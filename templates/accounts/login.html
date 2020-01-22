@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username"><br>
+        <input type="password" name="password1" placeholder="Password"><br>
+        <input type="submit">
+{#        <script>#}
+{#            alert('{{ message }}');#}
+{#        </script>#}
+    </form>
+</body>
+</html>

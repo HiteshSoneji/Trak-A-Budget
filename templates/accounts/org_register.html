@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Organization Registration</title>
+</head>
+<body>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="text" name="c_name" placeholder="Organization Name"><br>
+    <input type="text" name="username" placeholder=" Username"><br>
+    <input type="email" name="email" placeholder="Email ID"><br>
+    <input type="password" name="password1" placeholder="Password"><br>
+    <input type="password" name="password2" placeholder="Repeat Password"><br>
+    <input type="submit" />
+</form>
+</body>
+</html>

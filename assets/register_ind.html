@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>
+		Sign Up -- Budget Tracker
+	</title>
+	<style type="text/css">
+		@font-face 
+        {
+		font-family: Poppins-Regular;
+  		src: url('../fonts/poppins/Poppins-Regular.ttf'); 
+		}
+		@font-face 
+		{
+  		font-family: Poppins-Medium;
+  		src: url('../fonts/poppins/Poppins-Medium.ttf'); 
+		}
+		@font-face 
+		{
+  			font-family: Poppins-Bold;
+  			src: url('../fonts/poppins/Poppins-Bold.ttf'); 
+		}
+		@font-face 
+		{
+		  	font-family: Poppins-SemiBold;
+		  	src: url('../fonts/poppins/Poppins-SemiBold.ttf'); 
+		}
+		body
+		{
+			background-image: linear-gradient(to top,#0250c5, #d43f8d);
+			background-repeat: no-repeat;
+		}
+		.leftpane
+		{
+			width: 60%;
+			height: 100%;
+			float: left;
+			border-collapse: collapse;
+		}
+		.rightpane
+		{
+			width: 40%;
+			height: 100%;
+			float: right;
+			border-collapse: collapse;
+		}
+		.container
+		{
+			width: 100%;
+			height: 100%;
+		}
+		#LoginForm
+		{
+			background-color: white;
+			margin-bottom: 10%;
+			padding-top: 2.5%;
+			height: 100%;
+			font-size: 25px;
+			font-family: Poppins-Medium;
+			text-align: center;
+			background-image: linear-gradient(to top,#0250c5, white);
+		}
+		#SignUpText
+		{
+			margin-top: 6%;
+			font-family: Poppins-Bold;
+			color: royalblue;
+			font-size: 40px;
+		}
+		input[type=text]
+		{
+			margin-top: 5%;
+			width: 65%;
+			box-sizing: border-box;
+			height: 45px;
+			border-color: #e22485;
+			padding-left: 50px
+		}
+		input[type=password]
+		{
+			margin-top: 5%;
+			width: 65%;
+			box-sizing: border-box;
+			height: 45px;
+			border-color: #e22485;
+			padding-left: 50px
+		}
+		input[type=text]:focus
+		{
+			border-color: royalblue;
+		}
+		input[type=text]:hover
+		{
+			border-color: royalblue;
+		}
+		input[type=password]:focus
+		{
+			border-color: royalblue;
+		}
+		input[type=password]:hover
+		{
+			border-color: royalblue;
+		}
+		a:link,a:visited
+		{
+			color: #e22485;
+		}
+		a:hover
+		{
+			color: black;
+			text-decoration: none;
+		}
+		#RegisterButton
+		{
+			margin-top: 5%;
+			width: 50%;
+        	font-size: 24px;
+        	height: 50px;
+        	border-radius: 24px;
+        	color: black;
+			background-color: #e22485;
+        	font-family: Poppins-SemiBold;
+        	border-color: royalblue;
+		}
+		#linktext
+		{
+			margin-top: 5%;
+			color: black;
+			font-family: Poppins-Regular;
+			text-align: center;
+			font-size: 24px;
+		}
+		#name
+		{
+			background-image: url("name_1.png");
+			background-position: 10px 10px;
+			background-repeat: no-repeat;
+		}
+		#uname
+		{
+			background-image: url("user_2.png");
+			background-position: 10px 10px;
+			background-repeat: no-repeat;
+		}
+		#pass
+		{
+			background-image: url("pass_1.png");
+			background-position: 10px 10px;
+			background-repeat: no-repeat;
+		}
+		#email
+		{
+			background-image: url("email_1.png");
+			background-position: 10px 10px;
+			background-repeat: no-repeat;
+		}
+		#im
+		{
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="leftpane">
+			<img src="corp_22.jpg" id="im">
+		</div>
+		<div class="rightpane">
+			<form method="post" id="LoginForm">
+				<h1 id="SignUpText">INDIVIDUAL SIGN UP</h1>
+				<input type="text" name="FirstName" placeholder="First Name" id="name">
+				<input type="text" name="LastName" placeholder="Last Name" id="name">
+				<input type="text" name="Username" placeholder="Username" id="uname">
+				<input type="text" name="Email" placeholder="Email ID" id="email">
+				<input type="password" name="Password" placeholder="Password" id="pass">
+				<input type="password" name="Password2" placeholder="Confirm Password" id="pass">
+				<button id="RegisterButton">
+					Register Now
+				</button>
+				<h1 id="linktext">Already Signed Up?</h1>
+				<a href="login_ind.html" target="_blank" title="Login Here">Login Here</a>
+			</form>
+			<br>
+			<br>
+			<br>
+			<br>
+		</div>
+	</div>
+</body>
+</html>

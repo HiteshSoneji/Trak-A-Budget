@@ -1,0 +1,189 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>
+		Login -- Budget Tracker
+	</title>
+	<style type="text/css">
+		
+        @font-face 
+        {
+		font-family: Poppins-Regular;
+  		src: url('{% static 'fonts/poppins/Poppins-Regular.ttf' %}');
+		}
+		@font-face 
+		{
+  		font-family: Poppins-Medium;
+  		src: url('{% static 'fonts/poppins/Poppins-Medium.ttf' %}');
+		}
+		@font-face 
+		{
+  			font-family: Poppins-Bold;
+  			src: url('{% static 'fonts/poppins/Poppins-Bold.ttf' %}');
+		}
+		@font-face 
+		{
+		  	font-family: Poppins-SemiBold;
+		  	src: url('{% static 'fonts/poppins/Poppins-SemiBold.ttf' %}');
+		}
+		body
+		{
+			background-image: linear-gradient(to top,#0250c5, #d43f8d);
+			background-repeat: no-repeat;
+		}
+		.leftpane
+		{
+			width: 35%;
+			height: 100%;
+			float: left;
+			border-collapse: collapse;
+		}
+		.middlepane
+		{
+			width: 30%;
+			height: 100%;
+			float: left;
+			margin-left: 33.5%;
+			margin-top: 2.5%;
+			border-collapse: collapse;
+			margin-bottom: 10%;
+		}
+		.rightpane
+		{
+			width: 35%;
+			height: 100%;
+			float: right;
+			border-collapse: collapse;
+		}
+		.container
+		{
+			width: 100%;
+			height: 100%;
+		}
+		.loginbutton
+		{
+			margin-top: 12.2%;
+			width: 50%;
+        	font-size: 24px;
+        	height: 50px;
+        	border-radius: 24px;
+        	color: black;
+			background-color: #e22485;
+        	font-family: Poppins-SemiBold;
+        	border-color: royalblue;
+		}
+		.forgot
+		{
+			margin-top: 5%;
+			width: 50%;
+        	font-size: 24px;
+        	border-radius: 24px;
+        	height: 50px;
+        	background-color: #e22485;
+        	border-color: royalblue;
+        	font-family: Poppins-SemiBold;
+        	margin-bottom: 5%;
+		}
+		a:link,a:visited
+		{
+			color: royalblue;
+		}
+		a:hover
+		{
+			color: #e22485;
+			text-decoration: none;
+		}
+		#logintext
+		{
+			font-size: 40px;
+			padding-top: 10%;
+			font-family: Poppins-Bold;
+			color: royalblue;
+			text-align: center;
+		}
+		#loginform
+		{
+			font-size: 25px;
+			font-family: Poppins-Medium;
+			text-align: center;
+			background-color: white;
+			height: 100%;
+			border-radius: 15px;
+		}
+		#linktext
+		{
+			margin-top: 5%;
+			color: royalblue;
+			font-family: Poppins-Regular;
+			font-size: 24px;
+		}
+		input[type=text]
+		{
+			margin-top: 5%;
+			width: 65%;
+			box-sizing: border-box;
+			height: 45px;
+			border-color: #e22485;
+			background-image: url('{% static 'user_2.png' %}');
+			background-position: 10px 10px;
+			background-repeat: no-repeat;
+			padding-left: 50px
+		}
+		input[type=text]:focus
+		{
+			border-color: royalblue;
+		}
+		input[type=text]:hover
+		{
+			border-color: royalblue;
+		}
+		input[type=password]:focus
+		{
+			border-color: royalblue;
+		}
+		input[type=password]:hover
+		{
+			border-color: royalblue;
+		}
+		input[type=password]
+		{
+			margin-top: 10%;
+			width: 65%;
+			box-sizing: border-box;
+			height: 45px;
+			border-color: #e22485;
+			background-image: url('{% static 'pass_1.png' %}');
+			background-position: 10px 10px;
+			background-repeat: no-repeat;
+			padding-left: 50px
+		}
+	</style>
+</head>
+<body>
+	<div class = "container">
+		<div class="leftpane">
+		</div>
+		<div class="middlepane">
+			<form method="post" id="loginform">
+                {% csrf_token %}
+				<h1 id="logintext">INDIVIDUAL LOGIN</h1>
+				<input type="text" name="username" placeholder="Username">
+				<input type="password" name="password1" placeholder="Password">
+				<button class="loginbutton" onclick="location.href = 'accounts/home';">
+					Login
+				</button>
+				<button class = "forgot" onclick="location.href = '../../accounts/password_reset';" type="button">
+					Forgot Password
+				</button>
+				<h1 id="linktext">New to this?</h1>
+				<a href="register_ind.html" target="_blank" title="Sign up now!">Sign up now</a>
+			</form>
+		</div>
+		<div class="rightpane">
+		</div>
+	</div>
+</body>
+</html>

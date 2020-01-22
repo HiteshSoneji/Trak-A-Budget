@@ -1,0 +1,418 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+	<title>
+		Welcome!
+	</title>
+	<style type="text/css">
+
+		html, body, .viewport 
+		{
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            font-family: Poppins-Regular, sans-serif;
+        }
+        @font-face 
+        {
+		font-family: Poppins-Regular;
+  		src: url('{% static 'fonts/poppins/Poppins-Regular.ttf' %}');
+		}
+		@font-face 
+		{
+  		font-family: Poppins-Medium;
+  		src: url('{% static 'fonts/poppins/Poppins-Medium.ttf' %}');
+		}
+	@font-face 
+	{
+  		font-family: Poppins-Bold;
+  		src: url('{% static 'fonts/poppins/Poppins-Bold.ttf' %}');
+	}
+	@font-face 
+	{
+	  	font-family: Poppins-SemiBold;
+	  	src: url('{% static 'fonts/poppins/Poppins-SemiBold.ttf' %}');
+	}
+        .toppane
+        {
+        	width: 100%;
+        	height: 100px;
+        	border-collapse: collapse;
+        }
+        .toppane2
+        {
+        	width: 100%;
+        	height: 50px;
+        	border-collapse: collapse;
+        }
+        .middlepane
+        {
+        	width: 30%;
+        	height: 100%;
+        	float: left;
+        	border-collapse: collapse;
+        }
+        .leftpane
+        {
+        	width: 30%;
+        	height: 80%;
+        	float: left;
+        	border-collapse: collapse;
+        	background-image: url('{% static 'corp_1.jpg' %}');
+        	background-color: #cccccc;	
+        	border-radius: 25px;
+        	margin-left: 5%;
+        	margin-bottom: 5%;
+        	border-color: #e22485;
+        }
+        .rightpane
+        {
+        	width: 30%;
+        	height: 80%;
+        	float: right;
+        	border-collapse: collapse;	
+        	position: relative;
+        	background-image: url('{% static 'indiv_1.jpg' %}');
+        	border-radius: 25px;
+        	margin-right: 5%;
+        	margin-bottom: 5%;
+        	border-color: #e22485;
+        }
+        .container
+        {
+        	width: 100%;
+        	height: 100%;
+        }
+        .flex-container 
+        {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -moz-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -moz-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            position: fixed;
+  			background: -webkit-linear-gradient(bottom, #0250c5, #d43f8d);
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0; 
+            width: 100%;
+            height: 100%;
+        }
+        .Login_Button
+        {
+        	background-color: #e22485;
+        	margin-left: 30%;
+        	margin-top: 50%;
+        	border: none;
+        	font-size: 24px;
+        	border-radius: 12px;
+        	width: 170px;
+        	height: 50px;
+        	font-family: Poppins-SemiBold;
+        }
+        .Register_Button
+        {
+        	background-color: #e22485;
+        	margin-left: 30%;
+        	margin-top: 15%;
+        	border: none;
+        	font-size: 24px;
+        	border-radius: 12px;
+        	width: 170px;
+        	height: 50px;
+        	font-family: Poppins-SemiBold;
+        }
+        #logo
+        {
+        	padding-left: 17.5%;
+        	padding-top: 17.5%;
+        	align-content: center;
+        }
+        #flex-item 
+        {
+           text-align: center;
+            margin: auto;
+            padding: 5%
+        }
+        #title
+        {
+        	text-align: center;
+        	font-family:Poppins-Bold;
+        	font-size: 300%;
+        }
+        #title2
+        {
+        	text-align: center;
+        	font-family: Poppins-Medium;
+        	font-size: 30px;
+        	color: white;
+        }
+	</style>
+</head>
+<body>
+
+{% if user.is_authenticated %}
+{{ user.first_name }}<br>
+
+{#    To be solved#}
+{#    <form method="POST">#}
+{#        {% csrf_token %}#}
+{#        <input type="text" name="Total Budget" placeholder="Enter your budget"><br>#}
+{#        <button id="budget">Add Budget</button><br>#}
+{#    </form>#}
+<h2>Modal Example</h2>
+<style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+<!-- Trigger/Open The Modal -->
+<button id="myBtn">Add Budget</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <form class="modal-form" method="POST">
+            {% csrf_token %}
+            Select the month for the budget:
+            <select id="mymonth" name="mymonth">
+                <option value="None" name="None">None</option>
+                <option value="January" name="January">January</option>
+                <option value="February" name="February">February</option>
+                <option value="March" name="March">March</option>
+                <option value="April" name="April">April</option>
+                <option value="May" name="May">May</option>
+                <option value="June" name="June">June</option>
+                <option value="July" name="July">July</option>
+                <option value="August" name="August">August</option>
+                <option value="September" name="September">September</option>
+                <option value="October" name="October">October</option>
+                <option value="November" name="November">November</option>
+                <option value="December" name="December">December</option>
+            </select>
+            <p>The selected value:
+                <select id="myselection" name="myselection">
+                    <option value="None" name="None">None</option>
+                    <option value="Loans" name="Loans">Loans</option>
+                    <option value="Utility Bills" name="Utility Bills">Utility Bills</option>
+                    <option value="Insurance" name="Insurance">Insurance</option>
+                    <option value="Entertainment" name="Entertainment">Entertainment</option>
+                    <option value="Groceries" name="Groceries">Groceries</option>
+                    <option value="Transportation" name="Transportation">Transportation</option>
+                    <option value="Retirement Fund" name="Retirement Fund">Retirement Fund</option>
+                    <option value="Emergency Fund" name="Emergency Fund">Emergency Fund</option>
+                    <option value="Childcare and School Costs" name="Childcare and School Costs">Childcare</option>
+                    <option value="Clothing" name="Clothing">Clothing</option>
+                    <option value="Maintainance">Maintainance</option>
+                </select>
+                <button id="Add">Add</button><br>
+
+            <div id="textboxDiv"></div>
+            <script>
+                $(document).ready(function() {
+                    var i=0;
+                    $("#Add").on("click", function() {
+                        if(i<1)
+                        {
+                            $("#textboxDiv").append("<div><br><label id='q2'>Expense</label>:<input type='number' id='exp' name='exp' placeholder='Enter Balence' required='required'><br></div>");
+                            $("#q2").empty();
+                            $("#q2").text($("#myselection").val());
+                            i=i+1;
+                        }
+                        $("#myselection").click(function() {
+                            $("#q2").empty();
+                            $("#q2").text($("#myselection").val());
+                        });
+                    });
+
+
+                });
+            </script>
+            <button type="submit" value="Submit">Add</button><br>
+            </p>
+        </form>
+    </div>
+
+</div>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+<br><a href="accounts/home_graph">Graph</a><br>
+<a href="accounts/home_expenses">Add Expenses</a><br>
+    <a href="accounts/indiv_pdf">PDF Generation</a><br>
+<a href="accounts/logout">Logout</a>
+    <script>
+        var modal = document.getElementById('myModal');
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+{% else %}
+<div id ="main" class="flex-container">
+		<div class = "container">
+        	<div class="toppane"><h1 id = "title">Budget Tracker</h1></div>
+        	<div class="leftpane">
+        		<div class = "toppane2"><h1 id = "title2">CORPORATE</h1></div>
+        		<button class = "Login_Button" onclick="location.href = 'accounts/login_corp';">
+        			LOGIN
+        		</button>
+        		<button class = "Register_Button"onclick="location.href = 'accounts/register_corp';">
+        			SIGN UP
+        		</button>
+        	</div>
+        	<div class="middlepane">
+        		<img id = "logo" src = "{% static 'logo_13.png' %}" style="width: 300px;height: 300px">
+        	</div>
+        	<div class="rightpane">
+        		<div class = "toppane2"><h1 id = "title2">INDIVIDUAL</h1></div>
+        		<button class = "Login_Button" id = "Login_Button"onclick="location.href = 'accounts/login_ind';">
+        			LOGIN
+        		</button>
+        		<button class = "Register_Button" onclick="location.href = 'accounts/register_ind';">
+        			SIGN UP
+        		</button>
+        	</div>
+    	</div>
+     </div>
+     <div id = "splash" class="flex-container" style="background: #e22485 ; display: none">
+     	<div id = "flex-item">
+     		<img src="{% static 'logo_13.png' %}" style= "width:600px;height:600px" />
+     	</div>
+     </div>
+
+     <script type="text/javascript">
+     	function fade(element) {
+        var op = 1;  // initial opacity
+        var timer = setInterval(function () {
+            if (op <= 0.1){
+                clearInterval(timer);
+
+                element.style.display = 'none';
+            }
+            element.style.opacity = op;
+            element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+            op -= op * 0.1;
+        }, 50);
+    }
+
+        setTimeout(function(){
+
+                 if(typeof(Storage) !== "undefined") {
+
+                  console.log("Already shown" +sessionStorage.getItem('spalashShown'));
+
+                   if( !sessionStorage.getItem('spalashShown') || sessionStorage.getItem('spalashShown') === null ) {  
+
+                   document.getElementById('splash') .style.display = 'inline';
+
+                    //Display splash
+                    setTimeout(function(){  
+
+                     fade(document.getElementById('splash'));
+                      // document.getElementById('splash') .style.display = 'none'
+                       // window.location = "http://hiteshsahu.com";
+
+                     sessionStorage.setItem('spalashShown', true  );
+                  }
+                   , 2000);
+
+                      } else {
+
+                         //Display Main Content
+                          document.getElementById('splash') .style.display = 'none'
+                            console.log("Already shown");
+                         }
+                      }
+
+                    else {
+                            document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+                          }
+                             }, 0);
+     </script>
+
+{% endif %}
+</body>
+</html>
