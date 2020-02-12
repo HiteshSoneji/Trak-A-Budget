@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d9fc79f0-57ca-4cb8-9419-f5d47ea50601" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ind_User_Data.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Indiv_User_Data.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp-plot.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/accounts/home_graph.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/accounts/home_graph.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,12 +174,24 @@
       <workItem from="1581176924986" duration="1736000" />
       <workItem from="1581304782440" duration="1057000" />
       <workItem from="1581479719197" duration="180000" />
-      <workItem from="1581480018880" duration="7870000" />
+      <workItem from="1581480018880" duration="8427000" />
     </task>
+    <task id="LOCAL-00001" summary="Commit with the pdf part">
+      <created>1581521181329</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1581521181329</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Commit with the pdf part" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit with the pdf part" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="72" key="#Inspections" timestamp="1577599868769">
@@ -203,10 +210,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="160" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1578994556983" />
-    <state x="393" y="8" key="CommitChangelistDialog2" timestamp="1581521152903">
+    <state x="393" y="8" key="CommitChangelistDialog2" timestamp="1581521179717">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1581521152903" />
+    <state x="393" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1581521179717" />
     <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1581496839084">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

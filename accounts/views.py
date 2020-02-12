@@ -443,15 +443,17 @@ def indiv_pdf_view(request):
     d.drawOn(c, 5, 50)
     c.save()
     file_path = os.path.join(settings.MEDIA_ROOT, saving)
-    if os.path.exists(file_path):
-        with open(file_path, 'rb') as fh:
-            response = HttpResponse(fh.read(), content_type="application/pdf")
-            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
-            return response
-    else:
+    try:
+        if os.path.exists(file_path):
+            with open(file_path, 'rb') as fh:
+                response = HttpResponse(fh.read(), content_type="application/pdf")
+                response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+                return response
+    except:
         raise Http404
-    # time.sleep(0.5)
-    # if os.path.isfile(saving):
-    #     os.remove(saving)
+
+    finally:
+        if os.path.isfile(saving):
+            os.remove(saving)
 
     return render(request, 'accounts/indiv_pdf.html')
