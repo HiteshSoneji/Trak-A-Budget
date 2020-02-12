@@ -8,7 +8,7 @@ import xlsxwriter
 from django.core.files.storage import FileSystemStorage, default_storage
 import os
 from django.conf import settings
-from django.http import JsonResponse
+from django.http import HttpResponse, Http404
 from openpyxl import Workbook
 from openpyxl import load_workbook
 from plotly.offline import plot
@@ -16,7 +16,16 @@ from plotly.graph_objs import Scatter
 import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-from fpdf import FPDF
+from reportlab.lib.pagesizes import A4, letter
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.units import mm
+from reportlab.pdfgen import canvas
+import reportlab
+from reportlab.platypus import Image, Paragraph, Table
+from reportlab.lib import colors
+from reportlab.graphics.shapes import Drawing
+from reportlab.graphics.charts.piecharts import Pie
+import time
 
 # Splash Screen (First Page)
 
@@ -174,14 +183,14 @@ def logout_view(request):
 
 def graph_view(request):
 
-# # Sample Graph (Line)
-#
-#     x_data = [0,1,2,3]
-#     y_data = [x**2 for x in x_data]
-#     plot_div = plot([Scatter(x=x_data, y=y_data,
-#                              mode='lines', name='test',
-#                              opacity=0.8, marker_color='green')],
-#                     output_type='div')
+# Sample Graph (Line)
+
+    x_data = [0,1,2,3]
+    y_data = [x**2 for x in x_data]
+    plot_div = plot([Scatter(x=x_data, y=y_data,
+                             mode='lines', name='test',
+                             opacity=0.8, marker_color='green')],
+                    output_type='div')
     u = request.user.username
     u = str(u)
     fn = (settings.MEDIA_ROOT+r'\uploads\Indiv_'+u+'_Data.xlsx')
@@ -209,9 +218,9 @@ def graph_view(request):
     labels = ['loans', 'utility bills', 'insurance', 'entertainment', 'groceries', 'transportation', 'retirement fund', 'emergency fund', 'childcare and school costs', 'clothing', 'maintainance']
 
     # p = make_subplots(rows=2, cols=1)
-    plot_div1 = plot(go.Figure(data=[go.Pie(labels=labels, values=values)]))
-    plot_div2 = plot(go.Figure(data=[go.Bar(x=months, y=total)]))
-    return render(request, "accounts/home_graph.html", context={'plot_div1': plot_div1, 'plot_div2':plot_div2})
+    # plot_div1 = plot(go.Figure(data=[go.Pie(labels=labels, values=values)]))
+    # plot_div2 = plot(go.Figure(data=[go.Bar(x=months, y=total)]))
+    return render(request, "accounts/home_graph.html", context={'months':months, 'labels':labels, 'values':values, 'total': total})
 
 #For Expenses
 def expense_view(request):
@@ -407,9 +416,42 @@ def org_login_view(request):
     return render(request, 'accounts/login_corp.html')
 
 def indiv_pdf_view(request):
-    pdf = FPDF()
-    pdf.add_page()
-    pdf.set_font('Arial', size=12)
-    pdf.cell(200,10, txt='Welcome to Budget Tracker!', ln=1, align='C')
-    pdf.output('simple_demo.pdf')
+    s = "Lol lol lol lol lol lol lol lol " \
+        "ok ok ok ok ok ok ok ok ok ok ok" \
+        "ok o k dnsosnsodkvnsdpvdsn vobbfhffbhfbfnjs"
+    u = request.user.username
+    saving = settings.MEDIA_ROOT+r'\uploads\Report_for_'+u+'.pdf'
+    c = canvas.Canvas(saving, bottomup=False, pagesize=A4)
+    c.drawString(5 ,15 , s)
+    c.drawString(5, 30, s)
+    c.drawString(5,45,u+',')
+    d = Drawing(200, 100)
+    pc = Pie()
+    pc.x = 65
+    pc.y = 15
+    pc.width = 70
+    pc.height = 70
+    pc.data = [10,20,30,40,50,60]
+    pc.labels = ['a','b','c','d','e','f']
+    pc.slices.strokeWidth=0.5
+    pc.slices[3].popout = 10
+    pc.slices[3].strokeWidth = 2
+    pc.slices[3].strokeDashArray = [2,2]
+    pc.slices[3].labelRadius = 1.75
+    pc.slices[3].fontColor = colors.red
+    d.add(pc)
+    d.drawOn(c, 5, 50)
+    c.save()
+    file_path = os.path.join(settings.MEDIA_ROOT, saving)
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/pdf")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    else:
+        raise Http404
+    # time.sleep(0.5)
+    # if os.path.isfile(saving):
+    #     os.remove(saving)
+
     return render(request, 'accounts/indiv_pdf.html')

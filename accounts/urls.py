@@ -13,6 +13,7 @@ urlpatterns = [
     path('accounts/home_graph/', views.graph_view, name='graph'),
     path('accounts/home_expenses/', views.expense_view, name='expenses'),
     path('accounts/org_register/', views.org_register_view, name = 'org_register'),
+    path('accounts/indiv_pdf/', views.indiv_pdf_view, name='ind_pdf'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('', views.splash, name='splash'),
 ]
