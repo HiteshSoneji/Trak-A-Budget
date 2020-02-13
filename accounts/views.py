@@ -3,8 +3,6 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from .models import Ind_User, Org_User
 from django.core.mail import EmailMessage
-import smtplib
-import xlsxwriter
 from django.core.files.storage import FileSystemStorage, default_storage
 import os
 from django.conf import settings
@@ -414,6 +412,8 @@ def org_login_view(request):
             print("Error")
             return redirect('')
     return render(request, 'accounts/login_corp.html')
+
+# PDF Creation and instant deletion
 
 def indiv_pdf_view(request):
     s = "Lol lol lol lol lol lol lol lol " \
