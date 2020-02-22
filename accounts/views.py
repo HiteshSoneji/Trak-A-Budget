@@ -19,18 +19,24 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import mm
 from reportlab.pdfgen import canvas
 import reportlab
-from reportlab.platypus import Image, Paragraph, Table
+from reportlab.platypus import Image, Paragraph, Table, TableStyle, PageBreak, SimpleDocTemplate
 from reportlab.lib import colors
 from reportlab.graphics.shapes import Drawing
 from reportlab.graphics.charts.piecharts import Pie
+from reportlab.graphics.charts.barcharts import VerticalBarChart, BarChartProperties, HorizontalBarChart
+
+from reportlab.lib.colors import black, red, purple, green, maroon, brown, pink, white, HexColor, darkgray, PCMYKColor
+from reportlab.graphics.charts.legends import Legend
 import time
+
 
 # Splash Screen (First Page)
 
 def splash(request):
     return render(request, 'accounts/splash.html')
 
-#Individual User Register and excel creation
+
+# Individual User Register and excel creation
 
 def ind_register_view(request):
     if request.method == 'POST':
@@ -46,21 +52,24 @@ def ind_register_view(request):
             elif User.objects.filter(email=email).exists():
                 print("email Taken")
             else:
-                user = User.objects.create_user(username=username, password=password1, email=email, first_name=f_name, last_name = l_name)
+                user = User.objects.create_user(username=username, password=password1, email=email, first_name=f_name,
+                                                last_name=l_name)
                 user.save();
                 s = Ind_User(username=username, l_name=l_name, f_name=f_name, password=password1, email=email)
                 s.save();
-                headers = ['loans', 'utility bills', 'insurance', 'entertainment', 'groceries', 'transportation', 'retirement fund', 'emergency fund', 'childcare and school costs', 'clothing', 'maintainance', 'total']
+                headers = ['loans', 'utility bills', 'insurance', 'entertainment', 'groceries', 'transportation',
+                           'retirement fund', 'emergency fund', 'childcare and school costs', 'clothing',
+                           'maintainance', 'total']
                 wb = Workbook()
                 ws = wb.active
-                ws.title='budget'
+                ws.title = 'budget'
                 ws.append(headers)
                 ws1 = wb.create_sheet('expenses')
                 ws1.append(headers)
                 u = username
                 u = str(u)
-                wb.save(settings.MEDIA_ROOT+r'\uploads\Indiv_'+u+'_Data.xlsx')
-                fn = (r'uploads\Indiv_'+u+'_Data.xlsx')
+                wb.save(settings.MEDIA_ROOT + r'\uploads\Indiv_' + u + '_Data.xlsx')
+                fn = (r'uploads\Indiv_' + u + '_Data.xlsx')
                 s.e_file = fn
                 s.save()
         else:
@@ -69,14 +78,15 @@ def ind_register_view(request):
     else:
         return render(request, 'accounts/register_ind.html')
 
-#Individual User Login
+
+# Individual User Login
 
 def ind_login_view(request):
-    if request.method=='POST':
+    if request.method == 'POST':
         username = request.POST.get('username', False)
         password1 = request.POST.get('password1', False)
 
-        user = auth.authenticate(username=username, password = password1)
+        user = auth.authenticate(username=username, password=password1)
 
         if user is not None:
             auth.login(request, user)
@@ -87,124 +97,193 @@ def ind_login_view(request):
         #     return redirect('/')
     return render(request, 'accounts/login_ind.html')
 
+
 # For Budget
 def home(request):
-
-# Checking current user and loading excel
+    # Checking current user and loading excel
 
     if request.user.is_authenticated:
         u = request.user.username
         u = str(u)
-        if u == 'hitesh25':
-            fn = (settings.MEDIA_ROOT+r'\uploads\Indiv_'+u+'_Data.xlsx')
-        elif u == 'hitesh98':
-            fn = (settings.MEDIA_ROOT+r'\uploads\Organ_'+u+'_Data_1.xlsx')
-        fn = str(fn)
-        print(fn)
-        workbook = load_workbook(fn)
-        ws = workbook.get_sheet_by_name('budget')
-        # ws = workbook.active
-        # print(a1.value)
+        # if u == 'hitesh25':
+        #     fn = (settings.MEDIA_ROOT+r'\uploads\Indiv_'+u+'_Data.xlsx')
+        # elif u == 'hitesh98':
+        #     fn = (settings.MEDIA_ROOT+r'\uploads\Organ_'+u+'_Data_1.xlsx')
+        # fn = str(fn)
+        if Ind_User.objects.filter(username=u).exists():
+            fn = (settings.MEDIA_ROOT + r'\uploads\Indiv_' + u + '_Data.xlsx')
+            print(fn)
+            workbook = load_workbook(fn)
+            ws = workbook.get_sheet_by_name('budget')
+            # ws = workbook.active
+            # print(a1.value)
 
-#Fetching the category and amount
+            # Fetching the category and amount
 
-        if request.method == 'POST':
-            m = request.POST['mymonth']
-            m = str(m)
-            m = m.lower()
-            # print(m)
-            if m == 'none':
-                messages.add_message(request, messages.INFO, 'Error No Month Selected')
-            if m == 'january':
-                s = 1
-            if m == 'february':
-                s = 2
-            if m == 'march':
-                s = 3
-            if m == 'april':
-                s = 4
-            if m == 'may':
-                s = 5
-            if m == 'june':
-                s = 6
-            if m == 'july':
-                s = 7
-            if m == 'august':
-                s = 8
-            if m == 'september':
-                s = 9
-            if m == 'october':
-                s = 10
-            if m == 'november':
-                s = 11
-            if m == 'december':
-                s = 12
-            l = request.POST['myselection']
-            l = str(l)
-            l = l.lower()
-            # print(l)
-            bal = request.POST['exp']
-            # print(bal)
-            row = 1
-            column = 1
+            if request.method == 'POST':
+                m = request.POST['mymonth']
+                m = str(m)
+                m = m.lower()
+                # print(m)
+                if m == 'none':
+                    messages.add_message(request, messages.INFO, 'Error No Month Selected')
+                if m == 'january':
+                    s = 1
+                if m == 'february':
+                    s = 2
+                if m == 'march':
+                    s = 3
+                if m == 'april':
+                    s = 4
+                if m == 'may':
+                    s = 5
+                if m == 'june':
+                    s = 6
+                if m == 'july':
+                    s = 7
+                if m == 'august':
+                    s = 8
+                if m == 'september':
+                    s = 9
+                if m == 'october':
+                    s = 10
+                if m == 'november':
+                    s = 11
+                if m == 'december':
+                    s = 12
+                l = request.POST['myselection']
+                l = str(l)
+                l = l.lower()
+                # print(l)
+                bal = request.POST['exp']
+                # print(bal)
+                row = 1
+                column = 1
 
-# Adding Data to Excel
+                # Adding Data to Excel
 
-            for i in range(1,12):
-                ref = ws.cell(row = row, column = i)
-                ref_value = ref.value
-                ref_value = str(ref_value)
-                ref_value = ref_value.lower()
-                # print(ref_value)
-                if ref_value == l:
-                    ws.cell(row = row + 1, column = i, value = int(bal))
-                    workbook.save(settings.MEDIA_ROOT+r'\uploads\Indiv_'+u+'_Data.xlsx')
-                    break
-                else:
-                    continue
-# # Calculating Total Column
-#             for i in range(2,13):
-#                 total = 0
-#                 for j in range(2,12):
-#                     ref = ws.cell(row = row, column = i)
-#                     ref_value = ref.value
-#                     ref_value = (ref_value)
-#                     total = total + ref_value
-#                     ws.cell(row = i, column = 12, value = total)
+                for i in range(1, 12):
+                    ref = ws.cell(row=row, column=i)
+                    ref_value = ref.value
+                    ref_value = str(ref_value)
+                    ref_value = ref_value.lower()
+                    # print(ref_value)
+                    if ref_value == l:
+                        ws.cell(row=row + 1, column=i, value=int(bal))
+                        workbook.save(settings.MEDIA_ROOT + r'\uploads\Indiv_' + u + '_Data.xlsx')
+                        break
+                    else:
+                        continue
+
+        elif Org_User.objects.filter(username=u).exists():
+            fn = (settings.MEDIA_ROOT + r'\uploads\Organ_' + u + '_Data_1.xlsx')
+            print(fn)
+            workbook = load_workbook(fn)
+            ws = workbook.get_sheet_by_name('budget')
+            # ws = workbook.active
+            # print(a1.value)
+
+            # Fetching the category and amount
+
+            if request.method == 'POST':
+                m = request.POST['mymonth']
+                m = str(m)
+                m = m.lower()
+                # print(m)
+                if m == 'none':
+                    messages.add_message(request, messages.INFO, 'Error No Month Selected')
+                if m == 'january':
+                    s = 1
+                if m == 'february':
+                    s = 2
+                if m == 'march':
+                    s = 3
+                if m == 'april':
+                    s = 4
+                if m == 'may':
+                    s = 5
+                if m == 'june':
+                    s = 6
+                if m == 'july':
+                    s = 7
+                if m == 'august':
+                    s = 8
+                if m == 'september':
+                    s = 9
+                if m == 'october':
+                    s = 10
+                if m == 'november':
+                    s = 11
+                if m == 'december':
+                    s = 12
+                l = request.POST['myselection']
+                l = str(l)
+                l = l.lower()
+                # print(l)
+                bal = request.POST['exp']
+                # print(bal)
+                row = 1
+                column = 1
+
+                # Adding Data to Excel
+
+                for i in range(1, 12):
+                    ref = ws.cell(row=row, column=i)
+                    ref_value = ref.value
+                    ref_value = str(ref_value)
+                    ref_value = ref_value.lower()
+                    # print(ref_value)
+                    if ref_value == l:
+                        ws.cell(row=row + 1, column=i, value=int(bal))
+                        workbook.save(settings.MEDIA_ROOT + r'\uploads\Organ_' + u + '_Data_1.xlsx')
+                        break
+                    else:
+                        continue
+
+    # # Calculating Total Column
+    #             for i in range(2,13):
+    #                 total = 0
+    #                 for j in range(2,12):
+    #                     ref = ws.cell(row = row, column = i)
+    #                     ref_value = ref.value
+    #                     ref_value = (ref_value)
+    #                     total = total + ref_value
+    #                     ws.cell(row = i, column = 12, value = total)
     return render(request, 'accounts/home.html')
 
-#Individual User Logout
+
+# Individual User Logout
 
 def logout_view(request):
     auth.logout(request)
-    return render(request, 'accounts/splash.html')
+    return redirect('/')
+
 
 def graph_view(request):
+    # Sample Graph (Line)
 
-# Sample Graph (Line)
-
-    x_data = [0,1,2,3]
-    y_data = [x**2 for x in x_data]
+    x_data = [0, 1, 2, 3]
+    y_data = [x ** 2 for x in x_data]
     plot_div = plot([Scatter(x=x_data, y=y_data,
                              mode='lines', name='test',
                              opacity=0.8, marker_color='green')],
                     output_type='div')
     u = request.user.username
     u = str(u)
-    fn = (settings.MEDIA_ROOT+r'\uploads\Indiv_'+u+'_Data.xlsx')
+    fn = (settings.MEDIA_ROOT + r'\uploads\Indiv_' + u + '_Data.xlsx')
     fn = str(fn)
     workbook = load_workbook(fn)
     ws = workbook.get_sheet_by_name('expenses')
     values = []
     total = []
-    for i in range(1,12):
-        ref = ws.cell(row = 2, column = i)
+    for i in range(1, 12):
+        ref = ws.cell(row=2, column=i)
         ref_value = ref.value
         ref_value = int(ref_value)
         values.append(ref_value)
 
-    for j in range(2,14):
-        ref = ws.cell(row = j, column = 12)
+    for j in range(2, 14):
+        ref = ws.cell(row=j, column=12)
         ref_value = ref.value
         if ref_value == None:
             total.append(0)
@@ -212,23 +291,26 @@ def graph_view(request):
             ref_value = int(ref_value)
             total.append(ref_value)
         # print(total)
-    months=['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Ocotber', 'November', 'December']
-    labels = ['loans', 'utility bills', 'insurance', 'entertainment', 'groceries', 'transportation', 'retirement fund', 'emergency fund', 'childcare and school costs', 'clothing', 'maintainance']
+    months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Ocotber',
+              'November', 'December']
+    labels = ['loans', 'utility bills', 'insurance', 'entertainment', 'groceries', 'transportation', 'retirement fund',
+              'emergency fund', 'childcare and school costs', 'clothing', 'maintainance']
 
     # p = make_subplots(rows=2, cols=1)
     # plot_div1 = plot(go.Figure(data=[go.Pie(labels=labels, values=values)]))
     # plot_div2 = plot(go.Figure(data=[go.Bar(x=months, y=total)]))
-    return render(request, "accounts/home_graph.html", context={'months':months, 'labels':labels, 'values':values, 'total': total})
+    return render(request, "accounts/home_graph.html",
+                  context={'months': months, 'labels': labels, 'values': values, 'total': total})
 
-#For Expenses
+
+# For Expenses
 def expense_view(request):
-
-#Fetching current user name and loading excel
+    # Fetching current user name and loading excel
 
     if request.user.is_authenticated:
         u = request.user.username
         u = str(u)
-        fn = (settings.MEDIA_ROOT+r'\uploads\Indiv_'+u+'_Data.xlsx')
+        fn = (settings.MEDIA_ROOT + r'\uploads\Indiv_' + u + '_Data.xlsx')
         fn = str(fn)
         workbook = load_workbook(fn)
         ws = workbook.get_sheet_by_name('expenses')
@@ -236,7 +318,7 @@ def expense_view(request):
         # print(a1.value)
         if request.method == 'POST':
 
-# Fetching the month, category and amount
+            # Fetching the month, category and amount
 
             m = request.POST['mymonth']
             m = str(m)
@@ -278,47 +360,48 @@ def expense_view(request):
             row = 1
             column = 1
 
-# Adding Data to Excel
+            # Adding Data to Excel
 
-            for i in range(1,12):
-                ref = ws.cell(row = row, column = i)
+            for i in range(1, 12):
+                ref = ws.cell(row=row, column=i)
                 ref_value = ref.value
                 ref_value = str(ref_value)
                 ref_value = ref_value.lower()
                 # print(ref_value)
                 if ref_value == l:
-                    ws.cell(row = s + 1, column = i, value = int(bal))
-                    workbook.save(settings.MEDIA_ROOT+r'\uploads\Indiv_'+u+'_Data.xlsx')
+                    ws.cell(row=s + 1, column=i, value=int(bal))
+                    workbook.save(settings.MEDIA_ROOT + r'\uploads\Indiv_' + u + '_Data.xlsx')
                     break
                 else:
                     continue
 
-# Calculating Total Column
+            # Calculating Total Column
 
             workbook = load_workbook(fn)
             ws = workbook.get_sheet_by_name('expenses')
-            for i in range(2,14):
+            for i in range(2, 14):
                 total = 0
-                for j in range(1,12):
-                    ref = ws.cell(row = i, column = j)
+                for j in range(1, 12):
+                    ref = ws.cell(row=i, column=j)
                     ref_value = ref.value
                     if ref_value == None:
                         continue
                     else:
                         total = total + ref_value
-                        ws.cell(row = i, column = 12, value = total)
+                        ws.cell(row=i, column=12, value=total)
 
-                workbook.save(settings.MEDIA_ROOT+r'\uploads\Indiv_'+u+'_Data.xlsx')
+                workbook.save(settings.MEDIA_ROOT + r'\uploads\Indiv_' + u + '_Data.xlsx')
 
     return render(request, 'accounts/home_expenses.html')
+
 
 # Organisations Register and excel creation
 
 def org_register_view(request):
-
     if request.method == 'POST':
         c_name = request.POST['c_name']
         username = request.POST['username']
+        t1 = request.POST['cat']
         email = request.POST['email']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
@@ -328,65 +411,67 @@ def org_register_view(request):
             elif User.objects.filter(email=email).exists():
                 print("email Taken")
             else:
-                user = User.objects.create_user(username=username, password=password1, email=email, first_name = c_name)
+                user = User.objects.create_user(username=username, password=password1, email=email, first_name=c_name)
                 user.save();
                 s = Org_User(username=username, c_name=c_name, password=password1, email=email)
                 s.save();
-                headers = ['loans', 'utility bills', 'insurance', 'entertainment', 'groceries', 'transportation', 'retirement fund', 'emergency fund', 'childcare and school costs', 'clothing', 'maintainance', 'total']
+                headers = ['loans', 'utility bills', 'insurance', 'entertainment', 'groceries', 'transportation',
+                           'retirement fund', 'emergency fund', 'childcare and school costs', 'clothing',
+                           'maintainance', 'total']
 
-# Workbook 1 creation
+                # Workbook 1 creation
                 wb1 = Workbook()
                 ws1 = wb1.active
-                ws1.title='budget'
+                ws1.title = 'budget'
                 ws1.append(headers)
                 ws2 = wb1.create_sheet('expenses')
                 ws2.append(headers)
                 u = username
                 u = str(u)
-                wb1.save(settings.MEDIA_ROOT+r'\uploads\Organ_'+u+'_Data_1.xlsx')
-                fn = (r'uploads\Organ_'+u+'_Data_1.xlsx')
+                wb1.save(settings.MEDIA_ROOT + r'\uploads\Organ_' + u + '_Data_1.xlsx')
+                fn = (r'uploads\Organ_' + u + '_Data_1.xlsx')
                 s.e_file = fn
                 s.save()
 
-#Workbook 2 Creation
+                # Workbook 2 Creation
                 wb2 = Workbook()
                 ws1 = wb2.active
-                ws1.title='budget'
+                ws1.title = 'budget'
                 ws1.append(headers)
                 ws2 = wb2.create_sheet('expenses')
                 ws2.append(headers)
                 u = username
                 u = str(u)
-                wb2.save(settings.MEDIA_ROOT+r'\uploads\Organ_'+u+'_Data_2.xlsx')
-                fn = (r'uploads\Organ_'+u+'_Data_2.xlsx')
+                wb2.save(settings.MEDIA_ROOT + r'\uploads\Organ_' + u + '_Data_2.xlsx')
+                fn = (r'uploads\Organ_' + u + '_Data_2.xlsx')
                 s.e_file = fn
                 s.save()
 
-#Workbook 3 Creation
+                # Workbook 3 Creation
                 wb3 = Workbook()
                 ws1 = wb3.active
-                ws1.title='budget'
+                ws1.title = 'budget'
                 ws1.append(headers)
                 ws2 = wb3.create_sheet('expenses')
                 ws2.append(headers)
                 u = username
                 u = str(u)
-                wb3.save(settings.MEDIA_ROOT+r'\uploads\Organ_'+u+'_Data_3.xlsx')
-                fn = (r'uploads\Organ_'+u+'_Data_3.xlsx')
+                wb3.save(settings.MEDIA_ROOT + r'\uploads\Organ_' + u + '_Data_3.xlsx')
+                fn = (r'uploads\Organ_' + u + '_Data_3.xlsx')
                 s.e_file = fn
                 s.save()
 
-#Workbook 4 Creation
+                # Workbook 4 Creation
                 wb4 = Workbook()
                 ws1 = wb4.active
-                ws1.title='budget'
+                ws1.title = 'budget'
                 ws1.append(headers)
                 ws2 = wb4.create_sheet('expenses')
                 ws2.append(headers)
                 u = username
                 u = str(u)
-                wb4.save(settings.MEDIA_ROOT+r'\uploads\Organ_'+u+'_Data_4.xlsx')
-                fn = (r'uploads\Organ_'+u+'_Data_4.xlsx')
+                wb4.save(settings.MEDIA_ROOT + r'\uploads\Organ_' + u + '_Data_4.xlsx')
+                fn = (r'uploads\Organ_' + u + '_Data_4.xlsx')
                 s.e_file = fn
                 s.save()
         else:
@@ -395,14 +480,15 @@ def org_register_view(request):
     else:
         return render(request, 'accounts/register_corp.html')
 
+
 # Organization Login
 
 def org_login_view(request):
-    if request.method=='POST':
+    if request.method == 'POST':
         username = request.POST['username']
         password1 = request.POST['password1']
 
-        user = auth.authenticate(username=username, password = password1)
+        user = auth.authenticate(username=username, password=password1)
 
         if user is not None:
             auth.login(request, user)
@@ -413,36 +499,290 @@ def org_login_view(request):
             return redirect('')
     return render(request, 'accounts/login_corp.html')
 
+
 # PDF Creation and instant deletion
 
 def indiv_pdf_view(request):
-    s = "Lol lol lol lol lol lol lol lol " \
-        "ok ok ok ok ok ok ok ok ok ok ok" \
-        "ok o k dnsosnsodkvnsdpvdsn vobbfhffbhfbfnjs"
+    # s = "Lol lol lol lol lol lol lol lol " \
+    #     "ok ok ok ok ok ok ok ok ok ok ok" \
+    #     "ok o k dnsosnsodkvnsdpvdsn vobbfhffbhfbfnjs"
+    # u = request.user.username
+    # saving = settings.MEDIA_ROOT + r'\uploads\Report_for_' + u + '.pdf'
+    # c = canvas.Canvas(saving, bottomup=False, pagesize=A4)
+    # c.drawString(5, 15, s)
+    # c.drawString(5, 30, s)
+    # c.drawString(5, 45, u + ',')
+    # d = Drawing(200, 100)
+    # pc = Pie()
+    # pc.x = 65
+    # pc.y = 15
+    # pc.width = 70
+    # pc.height = 70
+    # pc.data = [10, 20, 30, 40, 50, 60]
+    # pc.labels = ['a', 'b', 'c', 'd', 'e', 'f']
+    # pc.slices.strokeWidth = 0.5
+    # pc.slices[3].popout = 10
+    # pc.slices[3].strokeWidth = 2
+    # pc.slices[3].strokeDashArray = [2, 2]
+    # pc.slices[3].labelRadius = 1.75
+    # pc.slices[3].fontColor = colors.red
+    # d.add(pc)
+    # d.drawOn(c, 5, 50)
+    # c.save()
+    # file_path = os.path.join(settings.MEDIA_ROOT, saving)
     u = request.user.username
-    saving = settings.MEDIA_ROOT+r'\uploads\Report_for_'+u+'.pdf'
+    saving = settings.MEDIA_ROOT + r'\uploads\Report_for_' + u + '.pdf'
     c = canvas.Canvas(saving, bottomup=False, pagesize=A4)
-    c.drawString(5 ,15 , s)
-    c.drawString(5, 30, s)
-    c.drawString(5,45,u+',')
-    d = Drawing(200, 100)
+
+    c.setFont('Times-Roman', 30)
+    c.setFillColor(colors.deepskyblue)
+    c.drawString(20, 50, 'Budget Tracker')
+    c.setFillColor(colors.black)
+    c.setFont('Times-Roman', 13)
+    c.drawString(30, 70, 'Finance Handling, Made Easy')
+    c.setFillColor(colors.black)
+    c.setFont('Times-Roman', 8)
+    c.drawString(400, 90, 'For queries, contact us at :budgettracker@gmail.com')
+    c.setFillColor(colors.darkblue)
+    c.setFont('Times-Roman', 20)
+    c.drawString(250, 140, 'Monthly Report')
+    c.setFillColor(colors.black)
+    c.setFont('Times-Roman', 9)
+    c.drawString(40, 170, 'Hi '+u+', ')
+    c.setFillColor(colors.black)
+    c.setFont('Times-Roman', 9)
+    c.drawString(40, 190, "Here's your monthly report for the month <<month-name>>.")
+    c.setFillColor(colors.cornflowerblue)
+    c.setFont('Times-Roman', 15)
+    c.drawString(40, 225, 'Account Information')
+    c.setFillColor(colors.black)
+    c.setFont('Times-Roman', 9)
+    c.drawString(40, 250, 'Name: <<User-Name>>')
+    c.setFillColor(colors.black)
+    c.setFont('Times-Roman', 9)
+    c.drawString(40, 270, 'Email: <<Email-ID>>')
+    c.setFillColor(colors.black)
+    c.setFont('Times-Roman', 9)
+    c.drawString(40, 290, 'Username : <<UserName>>')
+    c.setFillColor(colors.cornflowerblue)
+    c.setFont('Times-Roman', 15)
+    c.drawString(40, 320, 'Expense for <<month>>')
+    c.setFillColor(colors.black)
+    c.setFont('Times-Roman', 12)
+    c.drawString(220, 350, 'Table for Expenses and Budget')
+
+    pdf_chart_colors = [
+        HexColor('#a9cce3'),
+        HexColor("#5dade2"),
+        HexColor("#2980b9"),
+        HexColor("#1f618d"),
+        HexColor("#1b4f72"),
+        HexColor("#154360"),
+        HexColor("#fadbd8"),
+        HexColor("#f1948a"),
+        HexColor("#ec7063"),
+        HexColor("#b03a2e"),
+        HexColor("#943126"),
+        HexColor('#d5f5e3')
+    ]
+    fn = (settings.MEDIA_ROOT + r'\uploads\Indiv_' + u + '_Data.xlsx')
+
+    workbook = load_workbook(fn)
+    ws = workbook['expenses']
+    ws1 = workbook['budget']
+    val = []
+    val1 = []
+    headers = []
+    data = []
+    for i in range(1, 13):
+        ref = ws.cell(row=1, column=i)
+        headers.append(ref.value.capitalize())
+
+    headers[8] = 'Childcare'
+    for i in range(1, 13):
+        ref = ws.cell(row=2, column=i)
+        val1.append(ref.value)
+
+    for i in range(1, 13):
+        ref = ws1.cell(row=2, column=i)
+        val.append(ref.value)
+
+    val.insert(0, 'Budget')
+    val1.insert(0, 'Expenses')
+    headers.insert(0, '      ')
+    data.append(val1)
+    data.append(val)
+    data.append(headers)
+
+    val2 = val1[:]
+    del (val2[0])
+    del (val2[-1])
+
+    headers1 = headers[:]
+    del (headers1[0])
+    del (headers1[-1])
+    data1 = []
+    data1.append([])
+    data1.append([])
+
+    for i, x in enumerate(val2):
+        data1[1].append(x)
+    for i, x in enumerate(headers1):
+        data1[0].append(x)
+
+    total = []
+    for j in range(2, 14):
+        ref = ws.cell(row=j, column=12)
+        ref_value = ref.value
+        if ref_value == None:
+            total.append(0)
+        elif ref_value != None:
+            ref_value = int(ref_value)
+            total.append(ref_value)
+
+    data2 = []
+    data2.append(total)
+    data2.append(
+        [val[-1], val[-1], val[-1], val[-1], val[-1], val[-1], val[-1], val[-1], val[-1], val[-1], val[-1], val[-1]])
+
+    t = Table(data)
+    t.setStyle(TableStyle([
+        ('BACKGROUND', (1, 2), (12, 2), colors.mediumaquamarine),
+        ('BACKGROUND', (0, 0), (0, 1), colors.mediumaquamarine),
+        ('INNERGRID', (0, 0), (-1, -1), 1, colors.black),
+        ('BOX', (0, 0), (-1, -1), 1, colors.black),
+        ('FONTSIZE', (0, 0), (-1, -1), 6),
+        ('ALIGN', (0, 0), (-1, 1), 'CENTER')
+    ]))
+
+    t.wrapOn(c, 300, 300)
+    t.drawOn(c, 20, 380)
+
+    c.setFillColor(colors.cornflowerblue)
+    c.setFont('Times-Roman', 14)
+    c.drawString(270, 480, 'Pie Chart')
+    c.setFillColor(colors.black)
+    c.setFont('Times-Roman', 8)
+    c.drawString(250, 495, 'Money Spent Over the Month')
+
+    c.setFillColor(colors.black)
+    c.setFont('Times-Roman', 8)
+    c.drawString(500, 780, 'Page 1 of 2')
+
+    d = Drawing(300, 150)
     pc = Pie()
-    pc.x = 65
-    pc.y = 15
-    pc.width = 70
-    pc.height = 70
-    pc.data = [10,20,30,40,50,60]
-    pc.labels = ['a','b','c','d','e','f']
-    pc.slices.strokeWidth=0.5
-    pc.slices[3].popout = 10
-    pc.slices[3].strokeWidth = 2
-    pc.slices[3].strokeDashArray = [2,2]
-    pc.slices[3].labelRadius = 1.75
-    pc.slices[3].fontColor = colors.red
+    pc.x = 100
+    pc.y = 30
+    pc.width = 150
+    pc.height = 150
+    pc.data = data1[1]
+    pc.labels = data1[0]
+    pc.slices.strokeColor = PCMYKColor(0, 0, 0, 0)
+    pc.slices.label_visible = 0
+    pc.slices.strokeColor = darkgray
+    pc.slices.strokeWidth = 0.5
+
+    d1 = Drawing(100, 100)
+    legend = Legend()
+    legend.dx = 5
+    legend.dy = 5
+    legend.fontName = 'Helvetica'
+    legend.fontSize = 5.4
+    legend.boxAnchor = 'w'
+    legend.columnMaximum = 12
+    legend.strokeWidth = 0.5
+    legend.strokeColor = black
+    legend.deltax = 75
+    legend.deltay = 11
+    legend.autoXPadding = 5
+    legend.yGap = 2
+    legend.dxTextSpace = 3
+    legend.alignment = 'right'
+    legend.dividerLines = 1 | 2 | 4
+    legend.dividerOffsY = 5
+    legend.subCols.rpad = 20
+
+
+    def setItems(n, obj, attr, values):
+        m = len(values)
+        i = m // n
+        for j in range(n):
+            setattr(obj[j], attr, values[j * i % m])
+
+
+    n = len(pc.data)
+    setItems(n, pc.slices, 'fillColor', pdf_chart_colors)
+    legend.colorNamePairs = [(pc.slices[i].fillColor, (pc.labels[i][0:20], '%0.2f' % pc.data[i])) for i in range(n)]
+
+    d1.add(legend)
     d.add(pc)
-    d.drawOn(c, 5, 50)
+    d.drawOn(c, 120, 500)
+    d1.drawOn(c, 440, 605)
+
+    c.showPage()
+    c.setFillColor(colors.cornflowerblue)
+    c.setFont('Times-Roman', 15)
+    c.drawString(250, 40, 'Bar Graph')
+    c.setFillColor(colors.black)
+    c.setFont('Times-Roman', 8)
+    c.drawString(190, 50, 'Comparison of expenses across various months with budget')
+    d2 = Drawing(300, 300)
+
+    bc = VerticalBarChart()
+    bc.x = 50
+    bc.y = 50
+    bc.valueAxis.valueMin = 0
+    # bc.valueAxis.valueMax = 250000
+    # bc.valueAxis.valueStep = 50000
+    bc.height = 175
+    bc.width = 450
+    bc.categoryAxis.labels.dx = 8
+    bc.categoryAxis.labels.dy = -2
+    bc.data = data2
+    bc.categoryAxis.labels.boxAnchor = 'ne'
+    bc.bars[(0, 0)].fillColor = colors.lightgreen
+    bc.bars[(0, 1)].fillColor = colors.lightgreen
+    bc.bars[(0, 2)].fillColor = colors.lightgreen
+    bc.bars[(0, 3)].fillColor = colors.lightgreen
+    bc.bars[(0, 4)].fillColor = colors.lightgreen
+    bc.bars[(0, 5)].fillColor = colors.lightgreen
+    bc.bars[(0, 6)].fillColor = colors.lightgreen
+    bc.bars[(0, 7)].fillColor = colors.lightgreen
+    bc.bars[(0, 8)].fillColor = colors.lightgreen
+    bc.bars[(0, 9)].fillColor = colors.lightgreen
+    bc.bars[(0, 10)].fillColor = colors.lightgreen
+    bc.bars[(0, 11)].fillColor = colors.lightgreen
+
+    bc.bars[(1, 0)].fillColor = colors.lightblue
+    bc.bars[(1, 1)].fillColor = colors.lightblue
+    bc.bars[(1, 2)].fillColor = colors.lightblue
+    bc.bars[(1, 3)].fillColor = colors.lightblue
+    bc.bars[(1, 4)].fillColor = colors.lightblue
+    bc.bars[(1, 5)].fillColor = colors.lightblue
+    bc.bars[(1, 6)].fillColor = colors.lightblue
+    bc.bars[(1, 7)].fillColor = colors.lightblue
+    bc.bars[(1, 8)].fillColor = colors.lightblue
+    bc.bars[(1, 9)].fillColor = colors.lightblue
+    bc.bars[(1, 10)].fillColor = colors.lightblue
+    bc.bars[(1, 11)].fillColor = colors.lightblue
+
+    bc.categoryAxis.categoryNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    bc.categoryAxis.labels.angle = 30
+
+    d2.add(bc)
+    d2.drawOn(c, 40, 60)
+
+    c.setFillColor(colors.black)
+    c.setFont('Helvetica-Bold', 8.5)
+    c.drawString(30, 400,
+                 'Note : For any queries regarding incorrect info or wrong calculation, contact our customer care. We will get back to you shortly.')
+
+    c.setFillColor(colors.black)
+    c.setFont('Times-Roman', 8)
+    c.drawString(500, 780, 'Page 2 of 2')
     c.save()
     file_path = os.path.join(settings.MEDIA_ROOT, saving)
+
     try:
         if os.path.exists(file_path):
             with open(file_path, 'rb') as fh:

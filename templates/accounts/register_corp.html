@@ -133,7 +133,7 @@
 			text-align: center;
 			font-size: 24px;
 		}
-		#name
+		.name
 		{
 			background-image: url('{% static 'name_1.png' %}');
 			background-position: 10px 10px;
@@ -145,7 +145,7 @@
 			background-position: 10px 10px;
 			background-repeat: no-repeat;
 		}
-		#pass
+		.pass
 		{
 			background-image: url('{% static 'pass_1.png' %}');
 			background-position: 10px 10px;
@@ -169,18 +169,24 @@
 		</div>
 		<div class="rightpane">
 			<form method="post" id="LoginForm">
+                {% csrf_token %}
 				<h1 id="SignUpText">CORPORATE SIGN UP</h1>
-				<input type="text" name="FirstName" placeholder="First Name" id="name">
-				<input type="text" name="LastName" placeholder="Last Name" id="name">
-				<input type="text" name="Username" placeholder="Username" id="uname">
-				<input type="text" name="Email" placeholder="Email ID" id="email">
-				<input type="password" name="Password" placeholder="Password" id="pass">
-				<input type="password" name="Password2" placeholder="Confirm Password" id="pass">
+				<input type="text" name="c_name" placeholder="Company Name" class="name">
+				<input type="text" name="username" placeholder="Username" id="uname">
+                <select class="custom-select" multiple>
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+				<input type="text" name="email" placeholder="Email ID" id="email">
+				<input type="password" name="password1" placeholder="Password" class="pass">
+				<input type="password" name="password2" placeholder="Confirm Password" class="pass">
 				<button id="RegisterButton">
 					Register Now
 				</button>
 				<h1 id="linktext">Already Signed Up?</h1>
-				<a href="login_ind.html" target="_blank" title="Login Here">Login Here</a>
+				<a href="../../accounts/login_corp" target="_blank" title="Login Here">Login Here</a>
 			</form>
 			<br>
 			<br>
