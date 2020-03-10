@@ -2,197 +2,241 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>
-		Sign Up -- Budget Tracker
-	</title>
-	<style type="text/css">
-		@font-face 
-        {
-		font-family: Poppins-Regular;
-  		src: url('{% static 'fonts/poppins/Poppins-Regular.ttf' %}');
-		}
-		@font-face 
-		{
-  		font-family: Poppins-Medium;
-  		src: url('{% static 'fonts/poppins/Poppins-Medium.ttf' %}');
-		}
-		@font-face 
-		{
-  			font-family: Poppins-Bold;
-  			src: url('{% static 'fonts/poppins/Poppins-Bold.ttf' %}');
-		}
-		@font-face 
-		{
-		  	font-family: Poppins-SemiBold;
-		  	src: url('{% static 'fonts/poppins/Poppins-SemiBold.ttf' %}');
-		}
-		body
-		{
-			background-image: linear-gradient(to top,#0250c5, #d43f8d);
-			background-repeat: no-repeat;
-		}
-		.leftpane
-		{
-			width: 60%;
-			height: 100%;
-			float: left;
-			border-collapse: collapse;
-		}
-		.rightpane
-		{
-			width: 40%;
-			height: 100%;
-			float: right;
-			border-collapse: collapse;
-		}
-		.container
-		{
-			width: 100%;
-			height: 100%;
-		}
-		#LoginForm
-		{
-			background-color: white;
-			margin-bottom: 10%;
-			padding-top: 2.5%;
-			height: 100%;
-			font-size: 25px;
-			font-family: Poppins-Medium;
-			text-align: center;
-			background-image: linear-gradient(to top,#0250c5, white);
-		}
-		#SignUpText
-		{
-			margin-top: 6%;
-			font-family: Poppins-Bold;
-			color: royalblue;
-			font-size: 40px;
-		}
-		input[type=text]
-		{
-			margin-top: 5%;
-			width: 65%;
-			box-sizing: border-box;
-			height: 45px;
-			border-color: #e22485;
-			padding-left: 50px
-		}
-		input[type=password]
-		{
-			margin-top: 5%;
-			width: 65%;
-			box-sizing: border-box;
-			height: 45px;
-			border-color: #e22485;
-			padding-left: 50px
-		}
-		input[type=text]:focus
-		{
-			border-color: royalblue;
-		}
-		input[type=text]:hover
-		{
-			border-color: royalblue;
-		}
-		input[type=password]:focus
-		{
-			border-color: royalblue;
-		}
-		input[type=password]:hover
-		{
-			border-color: royalblue;
-		}
-		a:link,a:visited
-		{
-			color: #e22485;
-		}
-		a:hover
-		{
-			color: black;
-			text-decoration: none;
-		}
-		#RegisterButton
-		{
-			margin-top: 5%;
-			width: 50%;
-        	font-size: 24px;
-        	height: 50px;
-        	border-radius: 24px;
-        	color: black;
-			background-color: #e22485;
-        	font-family: Poppins-SemiBold;
-        	border-color: royalblue;
-		}
-		#linktext
-		{
-			margin-top: 5%;
-			color: black;
-			font-family: Poppins-Regular;
-			text-align: center;
-			font-size: 24px;
-		}
-		.name
-		{
-			background-image: url('{% static 'name_1.png' %}');
-			background-position: 10px 10px;
-			background-repeat: no-repeat;
-		}
-		#uname
-		{
-			background-image: url('{% static 'user_2.png' %}');
-			background-position: 10px 10px;
-			background-repeat: no-repeat;
-		}
-		.pass
-		{
-			background-image: url('{% static 'pass_1.png' %}');
-			background-position: 10px 10px;
-			background-repeat: no-repeat;
-		}
-		#email
-		{
-			background-image: url('{% static 'email_1.png' %}');
-			background-position: 10px 10px;
-			background-repeat: no-repeat;
-		}
-		#im
-		{
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+    <title>
+        Sign Up -- Budget Tracker
+    </title>
+    <style type="text/css">
+        @font-face {
+            font-family: Poppins-Regular;
+            src: url('{% static 'fonts/poppins/Poppins-Regular.ttf' %}');
+        }
+
+        @font-face {
+            font-family: Poppins-Medium;
+            src: url('{% static 'fonts/poppins/Poppins-Medium.ttf' %}');
+        }
+
+        @font-face {
+            font-family: Poppins-Bold;
+            src: url('{% static 'fonts/poppins/Poppins-Bold.ttf' %}');
+        }
+
+        @font-face {
+            font-family: Poppins-SemiBold;
+            src: url('{% static 'fonts/poppins/Poppins-SemiBold.ttf' %}');
+        }
+
+        body {
+            background-image: linear-gradient(to top, #0250c5, #d43f8d);
+            background-repeat: no-repeat;
+        }
+
+        .leftpane {
+            width: 60%;
+            height: 100%;
+            float: left;
+            border-collapse: collapse;
+        }
+
+        .rightpane {
+            width: 40%;
+            height: 100%;
+            float: right;
+            border-collapse: collapse;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+        }
+
+        #LoginForm {
+            background-color: white;
+            margin-bottom: 10%;
+            padding-top: 2.5%;
+            height: 100%;
+            font-size: 25px;
+            font-family: Poppins-Medium;
+            text-align: center;
+            background-image: linear-gradient(to top, #0250c5, white);
+        }
+
+        #SignUpText {
+            margin-top: 6%;
+            font-family: Poppins-Bold;
+            color: royalblue;
+            font-size: 40px;
+        }
+
+        input[type=text] {
+            margin-top: 5%;
+            width: 65%;
+            box-sizing: border-box;
+            height: 45px;
+            border-color: #e22485;
+            padding-left: 50px
+        }
+
+        input[type=password] {
+            margin-top: 5%;
+            width: 65%;
+            box-sizing: border-box;
+            height: 45px;
+            border-color: #e22485;
+            padding-left: 50px
+        }
+
+        input[type=text]:focus {
+            border-color: royalblue;
+        }
+
+        input[type=text]:hover {
+            border-color: royalblue;
+        }
+
+        input[type=password]:focus {
+            border-color: royalblue;
+        }
+
+        input[type=password]:hover {
+            border-color: royalblue;
+        }
+
+        a:link, a:visited {
+            color: #e22485;
+        }
+
+        a:hover {
+            color: black;
+            text-decoration: none;
+        }
+
+        #RegisterButton {
+            margin-top: 5%;
+            width: 50%;
+            font-size: 24px;
+            height: 50px;
+            border-radius: 24px;
+            color: black;
+            background-color: #e22485;
+            font-family: Poppins-SemiBold;
+            border-color: royalblue;
+        }
+
+        #linktext {
+            margin-top: 5%;
+            color: black;
+            font-family: Poppins-Regular;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .name {
+            background-image: url('{% static 'name_1.png' %}');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+        }
+
+        #uname {
+            background-image: url('{% static 'user_2.png' %}');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+        }
+
+        .pass {
+            background-image: url('{% static 'pass_1.png' %}');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+        }
+
+        #email {
+            background-image: url('{% static 'email_1.png' %}');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+        }
+
+        #im {
+        }
+    </style>
 </head>
 <body>
-	<div class="container">
-		<div class="leftpane">
-			<img src={% static 'corp_22.jpg' %} id="im">
-		</div>
-		<div class="rightpane">
-			<form method="post" id="LoginForm">
-                {% csrf_token %}
-				<h1 id="SignUpText">CORPORATE SIGN UP</h1>
-				<input type="text" name="c_name" placeholder="Company Name" class="name">
-				<input type="text" name="username" placeholder="Username" id="uname">
-                <select class="custom-select" multiple>
-                    <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+<div class="container">
+    <div class="leftpane">
+        <img src={% static 'corp_22.jpg' %} id="im">
+    </div>
+    <div class="rightpane">
+        <form method="post" id="LoginForm">
+            {% csrf_token %}
+            <h1 id="SignUpText">CORPORATE SIGN UP</h1>
+            <input type="text" name="c_name" placeholder="Company Name" class="name">
+            <input type="text" name="username" placeholder="Username" id="uname">
+            <input type="text" name="email" placeholder="Email ID" id="email">
+            <input type="password" name="password1" placeholder="Password" class="pass">
+            <input type="password" name="password2" placeholder="Confirm Password" class="pass">
+                <label for="departments">Which Departments do you want to add?</label><br>
+                <select class="selectpicker" name="departments" id='departments' multiple>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Sales">Sales</option>
+                    <option value="HR">HR</option>
+                    <option value="General">General</option>
+                    <option value="Operations">Operations</option>
+                    <option value="Logistics">Logistics</option>
+                    <option value="Customer Relations">Customer Relations</option>
                 </select>
-				<input type="text" name="email" placeholder="Email ID" id="email">
-				<input type="password" name="password1" placeholder="Password" class="pass">
-				<input type="password" name="password2" placeholder="Confirm Password" class="pass">
-				<button id="RegisterButton">
-					Register Now
-				</button>
-				<h1 id="linktext">Already Signed Up?</h1>
-				<a href="../../accounts/login_corp" target="_blank" title="Login Here">Login Here</a>
-			</form>
-			<br>
-			<br>
-			<br>
-			<br>
-		</div>
-	</div>
+            <button id="RegisterButton">
+                Register Now
+            </button>
+            <h1 id="linktext">Already Signed Up?</h1>
+            <a href="../../accounts/login_corp" target="_blank" title="Login Here">Login Here</a>
+        </form>
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $("button").click(function(){
+
+                    var departments = [];
+
+                    $.each($("#departments option:selected"), function(){
+
+                        departments.push($(this).val());
+
+                    });
+
+                    alert("You have selected the country - " + countries.join(", "));
+
+                });
+
+            });
+
+        </script>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+</div>
 </body>
 </html>

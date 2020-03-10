@@ -2,93 +2,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-	<title>
-		Welcome!
-	</title>
-	<style type="text/css">
+    <title>
+        Welcome!
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css"/>
+    <link rel="stylesheet"
+          href="https://cdn.rawgit.com/mladenplavsic/bootstrap-navbar-sidebar/3bd282bd/docs/navbar-fixed-left.min.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        .page-header {
+            margin-top: -23px;
+            height: 60px;
+        }
 
-		html, body, .viewport 
-		{
+        .navbar-brand {
+            margin-top: -70px;
+        }
+
+        .sign-out-main {
+            padding-top: 25px;
+            font-size: 16px;
+            padding-left: 1220px;
+        }
+
+        .sign-out {
+            margin-top: 200px;
+            padding-top: 100px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .card-budget {
+            margin-left: -30px;
+            border-radius: 2rem;
+
+        }
+
+        .card-expenses {
+            margin-left: -10px;
+            border-radius: 2rem;
+
+        }
+
+        .card-highest {
+            margin-left: 10px;
+            border-radius: 2rem;
+
+        }
+
+        .card-lowest {
+            margin-left: 20px;
+            margin-right: -100px;
+            border-radius: 2rem;
+        }
+
+        {#.bg{#}
+        {#    background-image: url('bg.png');#}
+        #}#}
+        .dropdown {
+            padding: 25px;
+            margin-left: -50px;
+        }
+
+        .month-name {
+            margin-top: 25px;
+            margin-left: 20px;
+            font-size: 17px;
+        }
+
+        #line-plot {
+            margin-left: -20px;
+            margin-right: -90px;
+            margin-top: 20px;
+            width: 800px;
+            height: 500px;
+            border-left: 3.2px solid;
+            border-color: darkblue;
+        }
+
+        .about {
+            margin-top: 160px;
+            margin-left: -50px;
+            font-size: 16px;
+        }
+
+        #tables {
+            width: 1500px;
+            height: 500px;
+            margin-left: -100px;
+            margin-right: -100px;
+            margin-top: -30px;
+        }
+
+        .dropdown-toggle {
+            margin-top: 20px;
+            margin-left: -50px;
+        }
+    </style>
+    <style type="text/css">
+
+        html, body, .viewport {
             width: 100%;
             height: 100%;
             margin: 0;
             font-family: Poppins-Regular, sans-serif;
         }
-        @font-face 
-        {
-		font-family: Poppins-Regular;
-  		src: url('{% static 'fonts/poppins/Poppins-Regular.ttf' %}');
-		}
-		@font-face 
-		{
-  		font-family: Poppins-Medium;
-  		src: url('{% static 'fonts/poppins/Poppins-Medium.ttf' %}');
-		}
-	@font-face 
-	{
-  		font-family: Poppins-Bold;
-  		src: url('{% static 'fonts/poppins/Poppins-Bold.ttf' %}');
-	}
-	@font-face 
-	{
-	  	font-family: Poppins-SemiBold;
-	  	src: url('{% static 'fonts/poppins/Poppins-SemiBold.ttf' %}');
-	}
-        .toppane
-        {
-        	width: 100%;
-        	height: 100px;
-        	border-collapse: collapse;
+
+        @font-face {
+            font-family: Poppins-Regular;
+            src: url('{% static 'fonts/poppins/Poppins-Regular.ttf' %}');
         }
-        .toppane2
-        {
-        	width: 100%;
-        	height: 50px;
-        	border-collapse: collapse;
+
+        @font-face {
+            font-family: Poppins-Medium;
+            src: url('{% static 'fonts/poppins/Poppins-Medium.ttf' %}');
         }
-        .middlepane
-        {
-        	width: 30%;
-        	height: 100%;
-        	float: left;
-        	border-collapse: collapse;
+
+        @font-face {
+            font-family: Poppins-Bold;
+            src: url('{% static 'fonts/poppins/Poppins-Bold.ttf' %}');
         }
-        .leftpane
-        {
-        	width: 30%;
-        	height: 80%;
-        	float: left;
-        	border-collapse: collapse;
-        	background-image: url('{% static 'corp_1.jpg' %}');
-        	background-color: #cccccc;	
-        	border-radius: 25px;
-        	margin-left: 5%;
-        	margin-bottom: 5%;
-        	border-color: #e22485;
+
+        @font-face {
+            font-family: Poppins-SemiBold;
+            src: url('{% static 'fonts/poppins/Poppins-SemiBold.ttf' %}');
         }
-        .rightpane
-        {
-        	width: 30%;
-        	height: 80%;
-        	float: right;
-        	border-collapse: collapse;	
-        	position: relative;
-        	background-image: url('{% static 'indiv_1.jpg' %}');
-        	border-radius: 25px;
-        	margin-right: 5%;
-        	margin-bottom: 5%;
-        	border-color: #e22485;
+
+        .toppane {
+            width: 100%;
+            height: 100px;
+            border-collapse: collapse;
         }
-        .container
-        {
-        	width: 100%;
-        	height: 100%;
+
+        .toppane2 {
+            width: 100%;
+            height: 50px;
+            border-collapse: collapse;
         }
-        .flex-container 
-        {
+
+        .middlepane {
+            width: 30%;
+            height: 100%;
+            float: left;
+            border-collapse: collapse;
+        }
+
+        .leftpane {
+            width: 30%;
+            height: 80%;
+            float: left;
+            border-collapse: collapse;
+            background-image: url('{% static 'corp_1.jpg' %}');
+            background-color: #cccccc;
+            border-radius: 25px;
+            margin-left: 5%;
+            margin-bottom: 5%;
+            border-color: #e22485;
+        }
+
+        .rightpane {
+            width: 30%;
+            height: 80%;
+            float: right;
+            border-collapse: collapse;
+            position: relative;
+            background-image: url('{% static 'indiv_1.jpg' %}');
+            border-radius: 25px;
+            margin-right: 5%;
+            margin-bottom: 5%;
+            border-color: #e22485;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .flex-container {
             display: -webkit-box;
             display: -webkit-flex;
             display: -moz-box;
@@ -105,313 +209,605 @@
             -ms-flex-pack: center;
             justify-content: center;
             position: fixed;
-  			background: -webkit-linear-gradient(bottom, #0250c5, #d43f8d);
+            background: -webkit-linear-gradient(bottom, #0250c5, #d43f8d);
             top: 0;
             right: 0;
             bottom: 0;
-            left: 0; 
+            left: 0;
             width: 100%;
             height: 100%;
         }
-        .Login_Button
-        {
-        	background-color: #e22485;
-        	margin-left: 30%;
-        	margin-top: 50%;
-        	border: none;
-        	font-size: 24px;
-        	border-radius: 12px;
-        	width: 170px;
-        	height: 50px;
-        	font-family: Poppins-SemiBold;
+
+        .Login_Button {
+            background-color: #e22485;
+            margin-left: 30%;
+            margin-top: 50%;
+            border: none;
+            font-size: 24px;
+            border-radius: 12px;
+            width: 170px;
+            height: 50px;
+            font-family: Poppins-SemiBold;
         }
-        .Register_Button
-        {
-        	background-color: #e22485;
-        	margin-left: 30%;
-        	margin-top: 15%;
-        	border: none;
-        	font-size: 24px;
-        	border-radius: 12px;
-        	width: 170px;
-        	height: 50px;
-        	font-family: Poppins-SemiBold;
+
+        .Register_Button {
+            background-color: #e22485;
+            margin-left: 30%;
+            margin-top: 15%;
+            border: none;
+            font-size: 24px;
+            border-radius: 12px;
+            width: 170px;
+            height: 50px;
+            font-family: Poppins-SemiBold;
         }
-        #logo
-        {
-        	padding-left: 17.5%;
-        	padding-top: 17.5%;
-        	align-content: center;
+
+        #logo {
+            padding-left: 17.5%;
+            padding-top: 17.5%;
+            align-content: center;
         }
-        #flex-item 
-        {
-           text-align: center;
+
+        #flex-item {
+            text-align: center;
             margin: auto;
             padding: 5%
         }
-        #title
-        {
-        	text-align: center;
-        	font-family:Poppins-Bold;
-        	font-size: 300%;
+
+        #title {
+            text-align: center;
+            font-family: Poppins-Bold;
+            font-size: 300%;
         }
-        #title2
-        {
-        	text-align: center;
-        	font-family: Poppins-Medium;
-        	font-size: 30px;
-        	color: white;
+
+        #title2 {
+            text-align: center;
+            font-family: Poppins-Medium;
+            font-size: 30px;
+            color: white;
         }
-	</style>
+    </style>
 </head>
 <body>
 
 {% if user.is_authenticated %}
-{{ user.first_name }}<br>
+    {#{{ user.first_name }}<br>#}
+    {#    #}
+    {#<h2>Modal Example</h2>#}
+    <nav class="navbar navbar-inverse navbar-fixed-left " style='background-color : #7daed4;'>
+        <div class="container">
+            <div class="navbar-header">
+                <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button> -->
+                <a class="navbar-brand" href="#">Budget Tracker</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <li><a id="myBtn">Add Budget</a></li>
+                    <li><a id="myBtn1">Add Expenses</a></li>
+                    <li><a href="accounts/home_graph">Show Graphs</a></li>
+                    <li><a href="accounts/indiv_pdf">Generate Report</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
 
-{#    To be solved#}
-{#    <form method="POST">#}
-{#        {% csrf_token %}#}
-{#        <input type="text" name="Total Budget" placeholder="Enter your budget"><br>#}
-{#        <button id="budget">Add Budget</button><br>#}
-{#    </form>#}
-<h2>Modal Example</h2>
-<style>
-    body {font-family: Arial, Helvetica, sans-serif;}
+                </ul>
 
-    /* The Modal (background) */
-    .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        padding-top: 100px; /* Location of the box */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    }
+            </div>
+        </div>
+    </nav>
+    <div class="page-header" style='background-color : #7daed4;'>
+        <p class='sign-out-main'><a class='sign-out' href="accounts/logout">Sign Out</a></p>
 
-    /* Modal Content */
-    .modal-content {
-        background-color: #fefefe;
-        margin: auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-    }
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" formmethod="POST">
+                    {% csrf_token %}
+                    Month
+                </button>
+                <div class="dropdown-menu" id ='mymonth1' data-model-name="mymonth1" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/">January</a>
+                    <a class="dropdown-item" href="/">February</a>
+                    <a class="dropdown-item" href="/">March</a>
+                    <a class="dropdown-item" href="/">April</a>
+                    <a class="dropdown-item" href="/">May</a>
+                    <a class="dropdown-item" href="/">June</a>
+                    <a class="dropdown-item" href="/">July</a>
+                    <a class="dropdown-item" href="/">August</a>
+                    <a class="dropdown-item" href="/">September</a>
+                    <a class="dropdown-item" href="/">October</a>
+                    <a class="dropdown-item" href="/">November</a>
+                    <a class="dropdown-item" href="/">December</a>
+                </div>
+            </div>
+            {% autoescape off %}
+            <p class='month-name'>{{ month }}</p>
+            {% endautoescape %}
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class='card-budget card' style="width: 23rem; background-color : #e8a220;">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Budget</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class='card-expenses card' style="width: 23rem; background-color : #eb73cf;">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Expense</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class='card-highest card' style="width: 23rem; background-color : #5d80e8;">
+                    <div class="card-body">
+                        <h5 class="card-title">Highest Expense</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    </div>
+                </div>
+            </div>
 
-    /* The Close Button */
-    .close {
-        color: #aaaaaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
+            <div class="col">
+                <div class='card-lowest card' style="width: 23rem; background-color : #72eb6e;">
+                    <div class="card-body">
+                        <h5 class="card-title">Lowest Expense</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    </div>
+                </div>
+            </div>
 
-    .close:hover,
-    .close:focus {
-        color: #000;
-        text-decoration: none;
-        cursor: pointer;
-    }
-</style>
-<!-- Trigger/Open The Modal -->
-<button id="myBtn">Add Budget</button>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="about">
+                    <p>Welcome to your Budget Tracker! We complete all your budget needs and give you the power to have
+                        complete control over it.</p>
+                    <p>Analyze your budget stats, see it as Pie chart, Bar graph, Line Chart or go ahead and add some
+                        new expenses. Print it out in a PDF of you want. We let you do it all !</p>
+                </div>
+            </div>
+            <div class="col">
+                <div id='line-plot'>
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="tables">
 
-    <!-- Modal content -->
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <form class="modal-form" method="POST">
-            {% csrf_token %}
-            Select the month for the budget:
-            <select id="mymonth" name="mymonth">
-                <option value="None" name="None">None</option>
-                <option value="January" name="January">January</option>
-                <option value="February" name="February">February</option>
-                <option value="March" name="March">March</option>
-                <option value="April" name="April">April</option>
-                <option value="May" name="May">May</option>
-                <option value="June" name="June">June</option>
-                <option value="July" name="July">July</option>
-                <option value="August" name="August">August</option>
-                <option value="September" name="September">September</option>
-                <option value="October" name="October">October</option>
-                <option value="November" name="November">November</option>
-                <option value="December" name="December">December</option>
-            </select>
-            <p>The selected value:
-                <select id="myselection" name="myselection">
+            </div>
+
+        </div>
+        <script>
+            {% autoescape off %}
+                let values = {{ values }};
+                let values1 = {{ values1 }};
+                let labels = {{ labels }};
+            {% endautoescape %}
+            var trace1 = {
+                x: labels,
+                y: values,
+                type: 'scatter',
+                name: 'Expenses'
+            };
+
+            var trace2 = {
+                x: labels,
+                y: values1,
+                type: 'scatter',
+                name: 'Budget'
+            };
+            var layout = {
+                showlegend: true,
+                xaxis: {
+                    title: 'Category',
+                    showgrid: true,
+                    zeroline: true
+                },
+                yaxis: {
+                    title: 'Amount',
+                    showline: true
+                }
+            };
+
+            var data = [trace1, trace2];
+
+            Plotly.newPlot('line-plot', data, layout, {displayModeBar: false});
+        </script>
+        <script>
+            var values = [
+                ['<b>Budget</b>', '<b>Expense</b>'],
+                [1200000, 20000],
+                [1200000, 20000], [1200000, 20000],
+                [1200000, 20000], [1200000, 20000], [1200000, 20000], [1200000, 20000], [1200000, 20000], [1200000, 20000], [1200000, 20000], [1200000, 20000], [1200000, 20000]]
+
+            var data = [{
+                type: 'table',
+                columnorder: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+                columnwidth: [300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300],
+                header: {
+                    values: [["<b>      </b>"], ["<b>Loans</b>"],
+                        ["<b>Timepass</b>"], ["<b>Timepass</b>"], ["<b>Timepass</b>"], ["<b>Timepass</b>"], ["<b>Timepass</b>"], ["<b>Timepass</b>"], ["<b>Timepass</b>"], ["<b>Timepass</b>"], ["<b>Timepass</b>"], ["<b>Timepass</b>"], ["<b>Timepass</b>"]],
+                    align: "center",
+                    line: {width: 2, color: 'black'},
+                    fill: {color: "blue"},
+                    font: {family: "Times-Roman", size: 18, color: "white"}
+                },
+                cells: {
+                    values: values,
+                    align: "center",
+                    line: {color: "black", width: 1},
+                    font: {family: "Times-Roman", size: 15, color: ["black"]}
+                }
+            }]
+
+            Plotly.newPlot('tables', data);
+
+        </script>
+    </div>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 200px; /* Location of the box */
+            margin-left: 100px;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0); /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+    <!-- Trigger/Open The Modal -->
+    {#<button id="myBtn">Add Budget</button>#}
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form class="modal-form" method="POST">
+                {% csrf_token %}
+                Select the month for the budget:
+                <select id="mymonth" name="mymonth">
                     <option value="None" name="None">None</option>
-                    <option value="Loans" name="Loans">Loans</option>
-                    <option value="Utility Bills" name="Utility Bills">Utility Bills</option>
-                    <option value="Insurance" name="Insurance">Insurance</option>
-                    <option value="Entertainment" name="Entertainment">Entertainment</option>
-                    <option value="Groceries" name="Groceries">Groceries</option>
-                    <option value="Transportation" name="Transportation">Transportation</option>
-                    <option value="Retirement Fund" name="Retirement Fund">Retirement Fund</option>
-                    <option value="Emergency Fund" name="Emergency Fund">Emergency Fund</option>
-                    <option value="Childcare and School Costs" name="Childcare and School Costs">Childcare</option>
-                    <option value="Clothing" name="Clothing">Clothing</option>
-                    <option value="Maintainance">Maintainance</option>
+                    <option value="January" name="January">January</option>
+                    <option value="February" name="February">February</option>
+                    <option value="March" name="March">March</option>
+                    <option value="April" name="April">April</option>
+                    <option value="May" name="May">May</option>
+                    <option value="June" name="June">June</option>
+                    <option value="July" name="July">July</option>
+                    <option value="August" name="August">August</option>
+                    <option value="September" name="September">September</option>
+                    <option value="October" name="October">October</option>
+                    <option value="November" name="November">November</option>
+                    <option value="December" name="December">December</option>
                 </select>
-                <button id="Add">Add</button><br>
+                <p>The selected value:
+                    <select id="myselection" name="myselection">
+                        <option value="None" name="None">None</option>
+                        <option value="Loans" name="Loans">Loans</option>
+                        <option value="Utility Bills" name="Utility Bills">Utility Bills</option>
+                        <option value="Insurance" name="Insurance">Insurance</option>
+                        <option value="Entertainment" name="Entertainment">Entertainment</option>
+                        <option value="Groceries" name="Groceries">Groceries</option>
+                        <option value="Transportation" name="Transportation">Transportation</option>
+                        <option value="Retirement Fund" name="Retirement Fund">Retirement Fund</option>
+                        <option value="Emergency Fund" name="Emergency Fund">Emergency Fund</option>
+                        <option value="Childcare and School Costs" name="Childcare and School Costs">Childcare</option>
+                        <option value="Clothing" name="Clothing">Clothing</option>
+                        <option value="Maintainance">Maintainance</option>
+                    </select>
+                    <button id="Add">Add</button>
+                    <br>
 
-            <div id="textboxDiv"></div>
-            <script>
-                $(document).ready(function() {
-                    var i=0;
-                    $("#Add").on("click", function() {
-                        if(i<1)
-                        {
-                            $("#textboxDiv").append("<div><br><label id='q2'>Expense</label>:<input type='number' id='exp' name='exp' placeholder='Enter Balence' required='required'><br></div>");
-                            $("#q2").empty();
-                            $("#q2").text($("#myselection").val());
-                            i=i+1;
-                        }
-                        $("#myselection").click(function() {
-                            $("#q2").empty();
-                            $("#q2").text($("#myselection").val());
+                <div id="textboxDiv"></div>
+                <script>
+                    $(document).ready(function () {
+                        var i = 0;
+                        $("#Add").on("click", function () {
+                            if (i < 1) {
+                                $("#textboxDiv").append("<div><br><label id='q2'>Expense</label>:<input type='number' id='exp' name='exp' placeholder='Enter Balence' required='required'><br></div>");
+                                $("#q2").empty();
+                                $("#q2").text($("#myselection").val());
+                                i = i + 1;
+                            }
+                            $("#myselection").click(function () {
+                                $("#q2").empty();
+                                $("#q2").text($("#myselection").val());
+                            });
                         });
+
+
                     });
+                </script>
+                <button type="submit" value="Submit">Add</button>
+                <br>
+                </p>
+            </form>
+        </div>
 
-
-                });
-            </script>
-            <button type="submit" value="Submit">Add</button><br>
-            </p>
-        </form>
     </div>
 
-</div>
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
 
-<script>
-    // Get the modal
-    var modal = document.getElementById("myModal");
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
 
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+        // When the user clicks the button, open the modal
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
 
-    // When the user clicks the button, open the modal
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
             modal.style.display = "none";
         }
-    }
-</script>
-<br><a href="accounts/home_graph">Graph</a><br>
-<a href="accounts/home_expenses">Add Expenses</a><br>
-    <a href="accounts/indiv_pdf">PDF Generation</a><br>
-<a href="accounts/logout">Logout</a>
-    <script>
-        var modal = document.getElementById('myModal');
 
-        window.onclick = function(event) {
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
         }
     </script>
-{% else %}
-<div id ="main" class="flex-container">
-		<div class = "container">
-        	<div class="toppane"><h1 id = "title">Budget Tracker</h1></div>
-        	<div class="leftpane">
-        		<div class = "toppane2"><h1 id = "title2">CORPORATE</h1></div>
-        		<button class = "Login_Button" onclick="location.href = 'accounts/login_corp';">
-        			LOGIN
-        		</button>
-        		<button class = "Register_Button"onclick="location.href = 'accounts/register_corp';">
-        			SIGN UP
-        		</button>
-        	</div>
-        	<div class="middlepane">
-        		<img id = "logo" src = "{% static 'logo_13.png' %}" style="width: 300px;height: 300px">
-        	</div>
-        	<div class="rightpane">
-        		<div class = "toppane2"><h1 id = "title2">INDIVIDUAL</h1></div>
-        		<button class = "Login_Button" id = "Login_Button"onclick="location.href = 'accounts/login_ind';">
-        			LOGIN
-        		</button>
-        		<button class = "Register_Button" onclick="location.href = 'accounts/register_ind';">
-        			SIGN UP
-        		</button>
-        	</div>
-    	</div>
-     </div>
-     <div id = "splash" class="flex-container" style="background: #e22485 ; display: none">
-     	<div id = "flex-item">
-     		<img src="{% static 'logo_13.png' %}" style= "width:600px;height:600px" />
-     	</div>
-     </div>
 
-     <script type="text/javascript">
-     	function fade(element) {
-        var op = 1;  // initial opacity
-        var timer = setInterval(function () {
-            if (op <= 0.1){
-                clearInterval(timer);
+    <script>
+        var modal = document.getElementById('myModal');
 
-                element.style.display = 'none';
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
             }
-            element.style.opacity = op;
-            element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-            op -= op * 0.1;
-        }, 50);
-    }
+        }
+    </script>
 
-        setTimeout(function(){
 
-                 if(typeof(Storage) !== "undefined") {
+{#    Adding the expenses modal#}
 
-                  console.log("Already shown" +sessionStorage.getItem('spalashShown'));
+{#    <div id="myModal1" class="modal">#}
+{##}
+{#        <!-- Modal content -->#}
+{#        <div class="modal-content">#}
+{#            <span class="close">&times;</span>#}
+{#            <form class="modal-form" method="POST">#}
+{#                {% csrf_token %}#}
+{#                Select the month for the budget:#}
+{#                <select id="mymonth" name="mymonth">#}
+{#                    <option value="None" name="None">None</option>#}
+{#                    <option value="January" name="January">January</option>#}
+{#                    <option value="February" name="February">February</option>#}
+{#                    <option value="March" name="March">March</option>#}
+{#                    <option value="April" name="April">April</option>#}
+{#                    <option value="May" name="May">May</option>#}
+{#                    <option value="June" name="June">June</option>#}
+{#                    <option value="July" name="July">July</option>#}
+{#                    <option value="August" name="August">August</option>#}
+{#                    <option value="September" name="September">September</option>#}
+{#                    <option value="October" name="October">October</option>#}
+{#                    <option value="November" name="November">November</option>#}
+{#                    <option value="December" name="December">December</option>#}
+{#                </select>#}
+{#                <p>The selected value:#}
+{#                    <select id="myselection" name="myselection">#}
+{#                        <option value="None" name="None">None</option>#}
+{#                        <option value="Loans" name="Loans">Loans</option>#}
+{#                        <option value="Utility Bills" name="Utility Bills">Utility Bills</option>#}
+{#                        <option value="Insurance" name="Insurance">Insurance</option>#}
+{#                        <option value="Entertainment" name="Entertainment">Entertainment</option>#}
+{#                        <option value="Groceries" name="Groceries">Groceries</option>#}
+{#                        <option value="Transportation" name="Transportation">Transportation</option>#}
+{#                        <option value="Retirement Fund" name="Retirement Fund">Retirement Fund</option>#}
+{#                        <option value="Emergency Fund" name="Emergency Fund">Emergency Fund</option>#}
+{#                        <option value="Childcare and School Costs" name="Childcare and School Costs">Childcare</option>#}
+{#                        <option value="Clothing" name="Clothing">Clothing</option>#}
+{#                        <option value="Maintainance">Maintainance</option>#}
+{#                    </select>#}
+{#                    <button id="Add">Add</button><br>#}
+{##}
+{#                <div id="textboxDiv"></div>#}
+{#                <script>#}
+{#                    $(document).ready(function() {#}
+{#                        var i=0;#}
+{#                        $("#Add").on("click", function() {#}
+{#                            if(i<1)#}
+{#                            {#}
+{#                                $("#textboxDiv").append("<div><br><label id='q2'>Expense</label>:<input type='number' id='exp' name='exp' placeholder='Enter Balence' required='required'><br></div>");#}
+{#                                $("#q2").empty();#}
+{#                                $("#q2").text($("#myselection").val());#}
+{#                                i=i+1;#}
+{#                            }#}
+{#                            $("#myselection").click(function() {#}
+{#                                $("#q2").empty();#}
+{#                                $("#q2").text($("#myselection").val());#}
+{#                            });#}
+{#                        });#}
+{##}
+{##}
+{#                    });#}
+{#                </script>#}
+{#                <button type="submit" value="Submit">Add</button><br>#}
+{#                </p>#}
+{#            </form>#}
+{#        </div>#}
+{##}
+{#    </div>#}
+{##}
+{#    <script>#}
+{#        // Get the modal#}
+{#        var modal = document.getElementById("myModal1");#}
+{##}
+{#        // Get the button that opens the modal#}
+{#        var btn = document.getElementById("myBtn1");#}
+{##}
+{#        // Get the <span> element that closes the modal#}
+{#        var span = document.getElementsByClassName("close")[0];#}
+{##}
+{#        // When the user clicks the button, open the modal#}
+{#        btn.onclick = function() {#}
+{#            modal.style.display = "block";#}
+{#        }#}
+{##}
+{#        // When the user clicks on <span> (x), close the modal#}
+{#        span.onclick = function() {#}
+{#            modal.style.display = "none";#}
+{#        }#}
+{##}
+{#        // When the user clicks anywhere outside of the modal, close it#}
+{#        window.onclick = function(event) {#}
+{#            if (event.target == modal) {#}
+{#                modal.style.display = "none";#}
+{#            }#}
+{#        }#}
+{#    </script>#}
+    {#<br><a href="../../accounts/home_graph">Graph</a><br>#}
+    {#<a href="../../accounts/logout">Logout</a><br>#}
+{#    <script>#}
+{#        var modal = document.getElementById('myModal1');#}
+{##}
+{#        window.onclick = function(event) {#}
+{#            if (event.target == modal) {#}
+{#                modal.style.display = "none";#}
+{#            }#}
+{#        }#}
+{#    </script>#}
 
-                   if( !sessionStorage.getItem('spalashShown') || sessionStorage.getItem('spalashShown') === null ) {  
 
-                   document.getElementById('splash') .style.display = 'inline';
+    {#    if User is not authenticated #}
+
+{% else %}
+    <div id="main" class="flex-container">
+        <div class="container">
+            <div class="toppane"><h1 id="title">Budget Tracker</h1></div>
+            <div class="leftpane">
+                <div class="toppane2"><h1 id="title2">CORPORATE</h1></div>
+                <button class="Login_Button" onclick="location.href = 'accounts/login_corp';">
+                    LOGIN
+                </button>
+                <button class="Register_Button" onclick="location.href = 'accounts/register_corp';">
+                    SIGN UP
+                </button>
+            </div>
+            <div class="middlepane">
+                <img id="logo" src="{% static 'logo_13.png' %}" style="width: 300px;height: 300px">
+            </div>
+            <div class="rightpane">
+                <div class="toppane2"><h1 id="title2">INDIVIDUAL</h1></div>
+                <button class="Login_Button" id="Login_Button" onclick="location.href = 'accounts/login_ind';">
+                    LOGIN
+                </button>
+                <button class="Register_Button" onclick="location.href = 'accounts/register_ind';">
+                    SIGN UP
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="splash" class="flex-container" style="background: #e22485 ; display: none">
+        <div id="flex-item">
+            <img src="{% static 'logo_13.png' %}" style="width:600px;height:600px"/>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function fade(element) {
+            var op = 1;  // initial opacity
+            var timer = setInterval(function () {
+                if (op <= 0.1) {
+                    clearInterval(timer);
+
+                    element.style.display = 'none';
+                }
+                element.style.opacity = op;
+                element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+                op -= op * 0.1;
+            }, 50);
+        }
+
+        setTimeout(function () {
+
+            if (typeof (Storage) !== "undefined") {
+
+                console.log("Already shown" + sessionStorage.getItem('spalashShown'));
+
+                if (!sessionStorage.getItem('spalashShown') || sessionStorage.getItem('spalashShown') === null) {
+
+                    document.getElementById('splash').style.display = 'inline';
 
                     //Display splash
-                    setTimeout(function(){  
+                    setTimeout(function () {
 
-                     fade(document.getElementById('splash'));
-                      // document.getElementById('splash') .style.display = 'none'
-                       // window.location = "http://hiteshsahu.com";
+                            fade(document.getElementById('splash'));
+                            // document.getElementById('splash') .style.display = 'none'
+                            // window.location = "http://hiteshsahu.com";
 
-                     sessionStorage.setItem('spalashShown', true  );
-                  }
-                   , 2000);
+                            sessionStorage.setItem('spalashShown', true);
+                        }
+                        , 2000);
 
-                      } else {
+                } else {
 
-                         //Display Main Content
-                          document.getElementById('splash') .style.display = 'none'
-                            console.log("Already shown");
-                         }
-                      }
-
-                    else {
-                            document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
-                          }
-                             }, 0);
-     </script>
+                    //Display Main Content
+                    document.getElementById('splash').style.display = 'none'
+                    console.log("Already shown");
+                }
+            } else {
+                document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+            }
+        }, 0);
+    </script>
 
 {% endif %}
 </body>

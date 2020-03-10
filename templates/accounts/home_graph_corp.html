@@ -134,10 +134,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="../../accounts/home">Home</a></li>
+                <li><a href="../../accounts/home_corp">Home</a></li>
                 <li><a id="myBtn">Add Budget</a></li>
                 <li><a href="#">Add Expenses</a></li>
-                <li><a href="../../accounts/home_graph">Show Graphs</a></li>
+                <li><a href="../../accounts/home_graph_corp">Show Graphs</a></li>
                 <li><a href="../../accounts/indiv_pdf">Generate Report</a></li>
                 <li><a href="#">Profile</a></li>
                 <li><a href="#">About Us</a></li>
@@ -153,7 +153,7 @@
 
 <div class="container">
     {% autoescape off %}
-    <h5>Month : {{ month_name }}</h5>
+        <h5>Month : {{ month_name }}</h5>
     {% endautoescape %}
     <div class="row">
         <div id="pie-chart">
@@ -177,9 +177,9 @@
     }];
 
     var layout = {
-    {% autoescape off %}
-        title: 'Pie Chart for the month of: {{ month_name }}',
-    {% endautoescape %}
+        {% autoescape off %}
+            title: 'Pie Chart for the month of: {{ month_name }}',
+        {% endautoescape %}
         height: 450,
         width: 600
     };

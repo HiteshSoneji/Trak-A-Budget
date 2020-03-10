@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Home Page</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Home Page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -75,8 +77,15 @@
             padding: 25px;
             margin-left: -50px;
         }
-
+        .dropdown1{
+            margin-left: 100px;
+        }
         .month-name {
+            margin-top: 25px;
+            margin-left: 20px;
+            font-size: 17px;
+        }
+        .dept-name{
             margin-top: 25px;
             margin-left: 20px;
             font-size: 17px;
@@ -111,7 +120,6 @@
             margin-left: -50px;
         }
     </style>
-   
 </head>
 <body>
 {% if user.is_authenticated %}
@@ -131,11 +139,11 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="../../accounts/home">Home</a></li>
-                    <li><a id="myBtn1"  data-toggle="modal" data-target="#exampleModal1">Add Budget</a></li>
+                    <li><a href="../../accounts/home_corp">Home</a></li>
+                    <li><a id="myBtn1" data-toggle="modal" data-target="#exampleModal1">Add Budget</a></li>
                     <li><a id="myBtn" data-toggle="modal" data-target="#exampleModal">Add Expenses</a></li>
-                    <li><a href="../../accounts/home_graph">Show Graphs</a></li>
-                    <li><a href="../../accounts/indiv_pdf">Generate Report</a></li>
+                    <li><a href="../../accounts/home_graph_corp">Show Graphs</a></li>
+                    <li><a href="../../accounts/corp_pdf">Generate Report</a></li>
                     <li><a href="#">Profile</a></li>
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Contact Us</a></li>
@@ -178,8 +186,28 @@
 
             </div>
             {% autoescape off %}
-                <p class='month-name'>{{ month }}</p>
+                <p class='month-name'>{{ month }}</p><br>
             {% endautoescape %}
+
+            <div class="dropdown dropdown1">
+                <form method="POST">
+                    {% csrf_token %}
+                    <button class="btn btn-secondary dropdown-toggle dropdown-toggle1" type="button" id="dropdownMenuButton1"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" formmethod="POST"
+                            value="Department">
+                        Department
+                    </button>
+                    <div class="dropdown-menu" id='dept' data-model-name="dept"
+                         aria-labelledby="dropdownMenuButton1">
+                        <a class="dropdown-item" href="#">General</a>
+                        <a class="dropdown-item" href="#">HR</a>
+                        <a class="dropdown-item" href="#">Marketing</a>
+                        <a class="dropdown-item" href="#">Sales</a>
+                    </div>
+                </form>
+            </div>
+
+                <p class="dept-name">--> Dept-Name <--</p>
         </div>
         <div class="row">
             <div class="col">
@@ -297,14 +325,14 @@
             var values2 = [
                 ['<b>Budget</b>', '<b>Expense</b>'],
                 [values4[0], values3[0]],
-                [values4[1], values3[1]], [values4[2], values3[2]], [values4[3], values3[3]], [values4[4], values3[4]], [values4[5], values3[5]], [values4[6], values3[6]], [values4[7], values3[7]], [values4[8], values3[8]], [values4[9], values3[9]], [values4[10], values3[10]], [val_tot1, val_tot]]
+                [values4[1], values3[1]], [values4[2], values3[2]], [values4[3], values3[3]], [values4[4], values3[4]], [values4[5], values3[5]], [values4[6], values3[6]], [values4[7], values3[7]], [values4[8], values3[8]], [values4[9], values3[9]], [val_tot1, val_tot]]
 
             var data = [{
                 type: 'table',
-                columnorder: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
-                columnwidth: [300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300],
+                columnorder: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+                columnwidth: [300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300],
                 header: {
-                    values: [["<b>      </b>"], [labels1[0]], [labels1[1]], [labels1[2]], [labels1[3]], [labels1[4]], [labels1[5]], [labels1[6]], [labels1[7]], [labels1[8]], [labels1[9]], [labels1[10]], ['Total']],
+                    values: [["<b>      </b>"], [labels1[0]], [labels1[1]], [labels1[2]], [labels1[3]], [labels1[4]], [labels1[5]], [labels1[6]], [labels1[7]], [labels1[8]], [labels1[9]], ['Total']],
                     align: "center",
                     line: {width: 2, color: 'black'},
                     fill: {color: "blue"},
@@ -366,21 +394,20 @@
                             <select id="myselection" name="myselection">
                                 <option value="None" name="None">None</option>
                                 <option value="Loans" name="Loans">Loans</option>
-                                <option value="Utility Bills" name="Utility Bills">Utility Bills</option>
-                                <option value="Insurance" name="Insurance">Insurance</option>
-                                <option value="Entertainment" name="Entertainment">Entertainment</option>
-                                <option value="Groceries" name="Groceries">Groceries</option>
-                                <option value="Transportation" name="Transportation">Transportation</option>
-                                <option value="Retirement Fund" name="Retirement Fund">Retirement Fund</option>
-                                <option value="Emergency Fund" name="Emergency Fund">Emergency Fund</option>
-                                <option value="Childcare and School Costs" name="Childcare and School Costs">Childcare
-                                </option>
-                                <option value="Clothing" name="Clothing">Clothing</option>
-                                <option value="Maintainance">Maintainance</option>
+                                <option value="Salaries" name="Salaries">Salaries</option>
+                                <option value="Maintenance" name="Maintenance">Maintenance</option>
+                                <option value="Inventory" name="Inventory">Inventory</option>
+                                <option value="Party Fund" name="Party Fund">Party Fund</option>
+                                <option value="Variable Costs" name="Variable Costs">Variable Costs</option>
+                                <option value="Bonuses" name="Bonuses">Bonuses</option>
+                                <option value="Operation Losses" name="Operation Losses">Operation Losses</option>
+                                <option value="Travel expenses" name="Travel Expenses">Travel Expenses</option>
+                                <option value="Charity" name="Charity">Charity</option>
                             </select>
                             <br>
                         <div><br><label id='q2'>Expense</label>:<input type='number' id='exp' name='exp'
-                                                                       placeholder='Enter Balence' required='required' min="0">
+                                                                       placeholder='Enter Balence' required='required'
+                                                                       min="0">
                             <br></div>
 
 
@@ -430,21 +457,20 @@
                             <select id="myselection1" name="myselection1">
                                 <option value="None" name="None">None</option>
                                 <option value="Loans" name="Loans">Loans</option>
-                                <option value="Utility Bills" name="Utility Bills">Utility Bills</option>
-                                <option value="Insurance" name="Insurance">Insurance</option>
-                                <option value="Entertainment" name="Entertainment">Entertainment</option>
-                                <option value="Groceries" name="Groceries">Groceries</option>
-                                <option value="Transportation" name="Transportation">Transportation</option>
-                                <option value="Retirement Fund" name="Retirement Fund">Retirement Fund</option>
-                                <option value="Emergency Fund" name="Emergency Fund">Emergency Fund</option>
-                                <option value="Childcare and School Costs" name="Childcare and School Costs">Childcare
-                                </option>
-                                <option value="Clothing" name="Clothing">Clothing</option>
-                                <option value="Maintainance">Maintainance</option>
+                                <option value="Salaries" name="Salaries">Salaries</option>
+                                <option value="Maintenance" name="Maintenance">Maintenance</option>
+                                <option value="Inventory" name="Inventory">Inventory</option>
+                                <option value="Party Fund" name="Party Fund">Party Fund</option>
+                                <option value="Variable Costs" name="Variable Costs">Variable Costs</option>
+                                <option value="Bonuses" name="Bonuses">Bonuses</option>
+                                <option value="Operation Losses" name="Operation Losses">Operation Losses</option>
+                                <option value="Travel expenses" name="Travel Expenses">Travel Expenses</option>
+                                <option value="Charity" name="Charity">Charity</option>
                             </select>
                             <br>
                         <div><br><label id='q2'>Budget</label>:<input type='number' id='exp1' name='exp1'
-                                                                       placeholder='Enter Balance:' required='required' min="0">
+                                                                      placeholder='Enter Balance:' required='required'
+                                                                      min="0">
                             <br></div>
 
 
@@ -460,6 +486,5 @@
         </div>
     </div>
 {% endif %}
-
 </body>
 </html>

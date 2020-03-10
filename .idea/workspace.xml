@@ -2,14 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9fc79f0-57ca-4cb8-9419-f5d47ea50601" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/accounts/corp_pdf.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/accounts/home_corp.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/accounts/home_corp1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/accounts/home_graph_corp.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget_tracker_1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/budget_tracker_1.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/Indiv_hitesh25_Data.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/media/uploads/Indiv_hitesh25_Data.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/accounts/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/accounts/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/accounts/home_expenses.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/accounts/home_expenses.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/accounts/home_graph.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/accounts/home_graph.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/accounts/home_indiv.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/accounts/home_indiv.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/accounts/login_corp.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/accounts/login_corp.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/accounts/login_ind.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/accounts/login_ind.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/accounts/register_corp.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/accounts/register_corp.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/accounts/register_ind.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/accounts/register_ind.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/accounts/splash.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/accounts/splash.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +74,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
@@ -75,7 +87,7 @@
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -188,7 +200,12 @@
       <workItem from="1582086434790" duration="2390000" />
       <workItem from="1582257483870" duration="599000" />
       <workItem from="1582290083903" duration="1156000" />
-      <workItem from="1582342287506" duration="1139000" />
+      <workItem from="1582342287506" duration="46736000" />
+      <workItem from="1582804671066" duration="275000" />
+      <workItem from="1582864126082" duration="25696000" />
+      <workItem from="1583134316434" duration="227000" />
+      <workItem from="1583154480775" duration="1351000" />
+      <workItem from="1583731681277" duration="32282000" />
     </task>
     <task id="LOCAL-00001" summary="Commit with the pdf part">
       <created>1581521181329</created>
@@ -218,7 +235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581576857748</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Commit with the pdf part">
+      <created>1582346310887</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1582346310887</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -245,30 +269,30 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="160" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1578994556983" />
-    <state x="393" y="8" key="CommitChangelistDialog2" timestamp="1581576856739">
+    <state x="393" y="8" key="CommitChangelistDialog2" timestamp="1583849590756">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1581576856739" />
-    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1582290096280">
+    <state x="393" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1583849590756" />
+    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1582797380651">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1582290096280" />
-    <state width="1478" height="207" key="GridCell.Tab.0.bottom" timestamp="1582346271295">
+    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1582797380651" />
+    <state width="1493" height="211" key="GridCell.Tab.0.bottom" timestamp="1583849590828">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1478" height="207" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1582346271295" />
-    <state width="1478" height="207" key="GridCell.Tab.0.center" timestamp="1582346271295">
+    <state width="1493" height="211" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583849590828" />
+    <state width="1493" height="211" key="GridCell.Tab.0.center" timestamp="1583849590828">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1478" height="207" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1582346271295" />
-    <state width="1478" height="207" key="GridCell.Tab.0.left" timestamp="1582346271295">
+    <state width="1493" height="211" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1583849590828" />
+    <state width="1493" height="211" key="GridCell.Tab.0.left" timestamp="1583849590828">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1478" height="207" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1582346271295" />
-    <state width="1478" height="207" key="GridCell.Tab.0.right" timestamp="1582346271295">
+    <state width="1493" height="211" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1583849590828" />
+    <state width="1493" height="211" key="GridCell.Tab.0.right" timestamp="1583849590828">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1478" height="207" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1582346271295" />
+    <state width="1493" height="211" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1583849590828" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1581054713932">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -305,18 +329,18 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="189" height="457" key="HiddenNamespacesPopup/0.0.1536.824@0.0.1536.824" timestamp="1578302715938" />
-    <state x="277" y="0" key="SettingsEditor" timestamp="1581495296748">
+    <state x="277" y="0" key="SettingsEditor" timestamp="1583839464909">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="277" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1581495296748" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1581576860052">
+    <state x="277" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1583839464909" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1582346320829">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1581576860052" />
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1581927012678">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1582346320829" />
+    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1583731683611">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1581927012678" />
+    <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1583731683611" />
     <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1582346289384">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -329,8 +353,12 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1578388392023" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1583770122845">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1583770122845" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/budget_tracker_1$views.coverage" NAME="views Coverage Results" MODIFIED="1581500551363" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/accounts" />
+    <SUITE FILE_PATH="coverage/budget_tracker_1$views.coverage" NAME="views Coverage Results" MODIFIED="1583821652789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/accounts" />
   </component>
 </project>

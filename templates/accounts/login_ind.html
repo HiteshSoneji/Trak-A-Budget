@@ -181,6 +181,12 @@
 				<h1 id="linktext">New to this?</h1>
 				<a href="../../accounts/register_ind" target="_blank" title="Sign up now!">Sign up now</a>
 			</form>
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+                {% endfor %}
+
+            {% endif %}
 		</div>
 		<div class="rightpane">
 		</div>
