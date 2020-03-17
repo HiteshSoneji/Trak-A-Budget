@@ -501,12 +501,12 @@ def home(request):
             workbook = load_workbook(fn)
             ws = workbook.get_sheet_by_name('expenses')
             ws1 = workbook.get_sheet_by_name('budget')
-            for i in range(2,14):
+            for i in range(2, 14):
                 total12 = 0
                 total13 = 0
-                for j in range(1,12):
-                    ref = ws.cell(row = i, column = j)
-                    ref1 = ws1.cell(row=i, column = j)
+                for j in range(1, 12):
+                    ref = ws.cell(row=i, column=j)
+                    ref1 = ws1.cell(row=i, column=j)
                     ref_value1 = ref1.value
                     ref_value = ref.value
                     if ref_value == None:
@@ -515,8 +515,8 @@ def home(request):
                         ref_value1 = 0
                     total12 = total12 + ref_value
                     total13 = total13 + ref_value1
-                ws.cell(row = i, column = 12).value = total12
-                ws1.cell(row = i, column = 12).value = total13
+                ws.cell(row=i, column=12).value = total12
+                ws1.cell(row=i, column=12).value = total13
                 workbook.save(settings.MEDIA_ROOT + r'\uploads\Indiv_' + u + '_Data.xlsx')
 
             return render(request, 'accounts/home.html', context=context)
@@ -527,7 +527,35 @@ def home_corp(request):
     # Checking current user and loading excel
     global m10
     global department
-    department =1
+    u = request.user.username
+    u = str(u)
+    all_lists = []
+    a = Org_User.objects.get(username=u).e_file_1
+    a = str(a)
+    a_s = a.split('_')
+    a = a_s[-2]
+
+    b = Org_User.objects.get(username=u).e_file_2
+    b = str(b)
+    b_s = b.split('_')
+    b = b_s[-2]
+
+    c = Org_User.objects.get(username=u).e_file_3
+    c = str(c)
+    c_s = c.split('_')
+    c = c_s[-2]
+
+    d = Org_User.objects.get(username=u).e_file_4
+    d = str(d)
+    d_s = d.split('_')
+    d = d_s[-2]
+
+    all_lists.append(a)
+    all_lists.append(b)
+    all_lists.append(c)
+    all_lists.append(d)
+
+    department = 1
     if request.user.is_authenticated:
         u = request.user.username
         u = str(u)
@@ -631,7 +659,8 @@ def home_corp(request):
             labels = ['loans', 'salaries', 'maintenance', 'inventory', 'party fund', 'variable costs', 'bonuses',
                       'operation losses', 'travel expenses', 'charity', 'total']
             context = {'values': values, 'values1': values1, 'month': m2, 'labels': labels, 'total': val_total,
-                       'total1': val_total1, 'rem_budget': rem_budget, 'max_exp': max_exp, 'dep':cur_dep[0], 'dep_number':department, 'month_number':m10}
+                       'total1': val_total1, 'rem_budget': rem_budget, 'max_exp': max_exp, 'dep': cur_dep[0],
+                       'dep_number': department, 'month_number': m10, 'all_lists':all_lists}
 
             if request.method == 'POST':
                 if request.method == 'POST' and 'Submit' in request.POST:
@@ -754,12 +783,12 @@ def home_corp(request):
             workbook = load_workbook(fn)
             ws = workbook.get_sheet_by_name('expenses')
             ws1 = workbook.get_sheet_by_name('budget')
-            for i in range(2,14):
+            for i in range(2, 14):
                 total12 = 0
                 total13 = 0
-                for j in range(1,11):
-                    ref = ws.cell(row = i, column = j)
-                    ref1 = ws1.cell(row=i, column = j)
+                for j in range(1, 11):
+                    ref = ws.cell(row=i, column=j)
+                    ref1 = ws1.cell(row=i, column=j)
                     ref_value1 = ref1.value
                     ref_value = ref.value
                     if ref_value == None:
@@ -768,8 +797,8 @@ def home_corp(request):
                         ref_value1 = 0
                     total12 = total12 + ref_value
                     total13 = total13 + ref_value1
-                ws.cell(row = i, column = 11).value = total12
-                ws1.cell(row = i, column = 11).value = total13
+                ws.cell(row=i, column=11).value = total12
+                ws1.cell(row=i, column=11).value = total13
                 workbook.save(fn)
                 # print(total12)
                 # print(total13)
@@ -778,7 +807,6 @@ def home_corp(request):
 
 
 def home_corp1(request, int_object1, int_object2):
-
     global m10
     global department
     if int_object1 is None:
@@ -791,6 +819,34 @@ def home_corp1(request, int_object1, int_object2):
         m10 = int(m10)
     else:
         m10 = int(int_object2)
+
+    u = request.user.username
+    u = str(u)
+    all_lists = []
+    a = Org_User.objects.get(username=u).e_file_1
+    a = str(a)
+    a_s = a.split('_')
+    a = a_s[-2]
+
+    b = Org_User.objects.get(username=u).e_file_2
+    b = str(b)
+    b_s = b.split('_')
+    b = b_s[-2]
+
+    c = Org_User.objects.get(username=u).e_file_3
+    c = str(c)
+    c_s = c.split('_')
+    c = c_s[-2]
+
+    d = Org_User.objects.get(username=u).e_file_4
+    d = str(d)
+    d_s = d.split('_')
+    d = d_s[-2]
+
+    all_lists.append(a)
+    all_lists.append(b)
+    all_lists.append(c)
+    all_lists.append(d)
 
     if request.user.is_authenticated:
         u = request.user.username
@@ -907,7 +963,8 @@ def home_corp1(request, int_object1, int_object2):
             labels = ['loans', 'salaries', 'maintenance', 'inventory', 'party fund', 'variable costs', 'bonuses',
                       'operation losses', 'travel expenses', 'charity', 'total']
             context = {'values': values, 'values1': values1, 'month': m2, 'labels': labels, 'total': val_total,
-                       'total1': val_total1, 'rem_budget': rem_budget, 'max_exp': max_exp, 'dep':cur_dep[0], 'month_number': m10, 'dep_number':department}
+                       'total1': val_total1, 'rem_budget': rem_budget, 'max_exp': max_exp, 'dep': cur_dep[0],
+                       'month_number': m10, 'dep_number': department, 'all_lists':all_lists}
 
             if request.method == 'POST':
                 if request.method == 'POST' and 'Submit' in request.POST:
@@ -1030,12 +1087,12 @@ def home_corp1(request, int_object1, int_object2):
             workbook = load_workbook(fn)
             ws = workbook.get_sheet_by_name('expenses')
             ws1 = workbook.get_sheet_by_name('budget')
-            for i in range(2,14):
+            for i in range(2, 14):
                 total12 = 0
                 total13 = 0
-                for j in range(1,11):
-                    ref = ws.cell(row = i, column = j)
-                    ref1 = ws1.cell(row=i, column = j)
+                for j in range(1, 11):
+                    ref = ws.cell(row=i, column=j)
+                    ref1 = ws1.cell(row=i, column=j)
                     ref_value1 = ref1.value
                     ref_value = ref.value
                     if ref_value == None:
@@ -1044,8 +1101,8 @@ def home_corp1(request, int_object1, int_object2):
                         ref_value1 = 0
                     total12 = total12 + ref_value
                     total13 = total13 + ref_value1
-                ws.cell(row = i, column = 11).value = total12
-                ws1.cell(row = i, column = 11).value = total13
+                ws.cell(row=i, column=11).value = total12
+                ws1.cell(row=i, column=11).value = total13
                 workbook.save(fn)
                 # print(total12)
                 # print(total13)
@@ -1274,12 +1331,12 @@ def home1(request, int_object):
             workbook = load_workbook(fn)
             ws = workbook.get_sheet_by_name('expenses')
             ws1 = workbook.get_sheet_by_name('budget')
-            for i in range(2,14):
+            for i in range(2, 14):
                 total12 = 0
                 total13 = 0
-                for j in range(1,12):
-                    ref = ws.cell(row = i, column = j)
-                    ref1 = ws1.cell(row=i, column = j)
+                for j in range(1, 12):
+                    ref = ws.cell(row=i, column=j)
+                    ref1 = ws1.cell(row=i, column=j)
                     ref_value1 = ref1.value
                     ref_value = ref.value
                     if ref_value == None:
@@ -1288,8 +1345,8 @@ def home1(request, int_object):
                         ref_value1 = 0
                     total12 = total12 + ref_value
                     total13 = total13 + ref_value1
-                ws.cell(row = i, column = 12).value = total12
-                ws1.cell(row = i, column = 12).value = total13
+                ws.cell(row=i, column=12).value = total12
+                ws1.cell(row=i, column=12).value = total13
                 workbook.save(settings.MEDIA_ROOT + r'\uploads\Indiv_' + u + '_Data.xlsx')
 
             return render(request, 'accounts/home.html', context=context)
@@ -1369,6 +1426,7 @@ def graph_view(request):
                   context={'months': months, 'labels': labels, 'values': values, 'total': total, 'month': m1,
                            'month_name': m2})
 
+
 def graph_view_corp(request):
     u = request.user.username
     u = str(u)
@@ -1428,7 +1486,7 @@ def graph_view_corp(request):
         m2 = 'December'
     print(m10)
     print(m2)
-        # print(total)
+    # print(total)
     months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Ocotber',
               'November', 'December']
     labels = ['loans', 'salaries', 'maintenance', 'inventory', 'party fund', 'variable costs', 'bonuses',
@@ -1540,7 +1598,7 @@ def org_register_view(request):
         email = request.POST['email']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
-        dep =request.POST.getlist('departments')
+        dep = request.POST.getlist('departments')
         print(dep)
         if password1 == password2:
             if User.objects.filter(username=username).exists():
@@ -1564,7 +1622,7 @@ def org_register_view(request):
                 ws2.append(headers)
                 u = username
                 u = str(u)
-                wb1.save(settings.MEDIA_ROOT + r'\uploads\Organ_' + u + '_'+ dep[0] + '_1.xlsx')
+                wb1.save(settings.MEDIA_ROOT + r'\uploads\Organ_' + u + '_' + dep[0] + '_1.xlsx')
                 fn = (r'uploads\Organ_' + u + '_' + dep[0] + '_1.xlsx')
                 s.e_file_1 = fn
                 s.save()
@@ -1944,8 +2002,8 @@ def indiv_pdf_view(request):
 
     return render(request, 'accounts/indiv_pdf.html')
 
-def corp_pdf_view(request):
 
+def corp_pdf_view(request):
     u = request.user.username
     if Org_User.objects.filter(username=u).exists():
         u = request.user.username
