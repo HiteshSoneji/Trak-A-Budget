@@ -285,6 +285,10 @@ def home(request):
         # fn = str(fn)
         if Ind_User.objects.filter(username=u).exists():
             u = request.user.username
+            id = Ind_User.objects.get(username=u).e_file
+            print(id)
+            file = getattr(Ind_User.objects.first(), 'e_file')
+            print(file)
             u = str(u)
             fn = (settings.MEDIA_ROOT + r'\uploads\Indiv_' + u + '_Data.xlsx')
             fn = str(fn)
@@ -522,15 +526,24 @@ def home(request):
 def home_corp(request):
     # Checking current user and loading excel
     global m10
+    global department
+    department =1
     if request.user.is_authenticated:
         u = request.user.username
         u = str(u)
         if Org_User.objects.filter(username=u).exists():
             u = request.user.username
             u = str(u)
-            fn = (settings.MEDIA_ROOT + r'\uploads\Organ_' + u + '_General.xlsx')
+            file = Org_User.objects.get(username=u).e_file_1
+            print(file)
+            file = str(file)
+            fn = settings.MEDIA_ROOT + '\\' + file
+            print(fn)
+            fn = str(fn)
             dep = fn.split('_')
-            cur_dep = dep[-1]
+            print(dep)
+            cur_dep = dep[-2]
+            print(cur_dep)
             cur_dep = cur_dep.split('.')
             print(cur_dep[0])
             fn = str(fn)
@@ -618,7 +631,7 @@ def home_corp(request):
             labels = ['loans', 'salaries', 'maintenance', 'inventory', 'party fund', 'variable costs', 'bonuses',
                       'operation losses', 'travel expenses', 'charity', 'total']
             context = {'values': values, 'values1': values1, 'month': m2, 'labels': labels, 'total': val_total,
-                       'total1': val_total1, 'rem_budget': rem_budget, 'max_exp': max_exp}
+                       'total1': val_total1, 'rem_budget': rem_budget, 'max_exp': max_exp, 'dep':cur_dep[0], 'dep_number':department, 'month_number':m10}
 
             if request.method == 'POST':
                 if request.method == 'POST' and 'Submit' in request.POST:
@@ -673,7 +686,7 @@ def home_corp(request):
                         # print(ref_value)
                         if ref_value == l:
                             ws.cell(row=s + 1, column=i, value=int(bal))
-                            workbook.save(settings.MEDIA_ROOT + r'\uploads\Organ_' + u + '_General.xlsx')
+                            workbook.save(fn)
                             break
                         else:
                             continue
@@ -730,14 +743,13 @@ def home_corp(request):
                         # print(ref_value)
                         if ref_value == l:
                             ws1.cell(row=s + 1, column=i, value=int(bal))
-                            workbook.save(settings.MEDIA_ROOT + r'\uploads\Organ_' + u + '_General.xlsx')
+                            workbook.save(fn)
                             break
                         else:
                             continue
 
             # Calculating Total Column
 
-            fn = (settings.MEDIA_ROOT + r'\uploads\Organ_' + u + '_General.xlsx')
             fn = str(fn)
             workbook = load_workbook(fn)
             ws = workbook.get_sheet_by_name('expenses')
@@ -758,10 +770,287 @@ def home_corp(request):
                     total13 = total13 + ref_value1
                 ws.cell(row = i, column = 11).value = total12
                 ws1.cell(row = i, column = 11).value = total13
-                workbook.save(settings.MEDIA_ROOT + r'\uploads\Organ_' + u + '_General.xlsx')
+                workbook.save(fn)
                 # print(total12)
                 # print(total13)
             return render(request, 'accounts/home_corp.html', context=context)
+    return render(request, 'accounts/home_corp.html')
+
+
+def home_corp1(request, int_object1, int_object2):
+
+    global m10
+    global department
+    if int_object1 is None:
+        department = 1
+    else:
+        department = int(int_object1)
+
+    if int_object2 is None:
+        m10 = datetime.date.today().month
+        m10 = int(m10)
+    else:
+        m10 = int(int_object2)
+
+    if request.user.is_authenticated:
+        u = request.user.username
+        u = str(u)
+        if Org_User.objects.filter(username=u).exists():
+            u = request.user.username
+            u = str(u)
+            file1 = Org_User.objects.get(username=u).e_file_1
+            file2 = Org_User.objects.get(username=u).e_file_2
+            file3 = Org_User.objects.get(username=u).e_file_3
+            file4 = Org_User.objects.get(username=u).e_file_4
+            file1 = str(file1)
+            file2 = str(file2)
+            file3 = str(file3)
+            file4 = str(file4)
+            if department == 1:
+                file = file1
+            elif department == 2:
+                file = file2
+            elif department == 3:
+                file = file3
+            elif department == 4:
+                file = file4
+
+            fn = settings.MEDIA_ROOT + '\\' + file
+            print(fn)
+            fn = str(fn)
+            dep = fn.split('_')
+            print(dep)
+            cur_dep = dep[-2]
+            print(cur_dep)
+            cur_dep = cur_dep.split('.')
+            print(cur_dep[0])
+            fn = str(fn)
+            workbook = load_workbook(fn)
+            ws = workbook.get_sheet_by_name('expenses')
+            ws1 = workbook.get_sheet_by_name('budget')
+            values = []
+            total = []
+            total1 = []
+            values1 = []
+            print(m10)
+            for i in range(1, 11):
+                ref = ws.cell(row=m10 + 1, column=i)
+                ref_value = ref.value
+                if ref_value == None:
+                    values.append(0)
+                elif ref_value != None:
+                    ref_value = int(ref_value)
+                    values.append(ref_value)
+
+            for i in range(1, 11):
+                ref = ws1.cell(row=m10 + 1, column=i)
+                ref_value = ref.value
+                if ref_value == None:
+                    values1.append(0)
+                elif ref_value != None:
+                    ref_value = int(ref_value)
+                    values1.append(ref_value)
+
+            for j in range(2, 14):
+                ref = ws.cell(row=j, column=11)
+                ref_value = ref.value
+                if ref_value == None:
+                    total.append(0)
+                elif ref_value != None:
+                    ref_value = int(ref_value)
+                    total.append(ref_value)
+
+            for j in range(2, 14):
+                ref = ws1.cell(row=j, column=11)
+                ref_value = ref.value
+                if ref_value == None:
+                    total1.append(0)
+                elif ref_value != None:
+                    ref_value = int(ref_value)
+                    total1.append(ref_value)
+
+            if m10 == 1:
+                m2 = 'January'
+            if m10 == 2:
+                m2 = 'February'
+            if m10 == 3:
+                m2 = 'March'
+            if m10 == 4:
+                m2 = 'April'
+            if m10 == 5:
+                m2 = 'May'
+            if m10 == 6:
+                m2 = 'June'
+            if m10 == 7:
+                m2 = 'July'
+            if m10 == 8:
+                m2 = 'August'
+            if m10 == 9:
+                m2 = 'September'
+            if m10 == 10:
+                m2 = 'October'
+            if m10 == 11:
+                m2 = 'November'
+            if m10 == 12:
+                m2 = 'December'
+
+            val_total = total[m10 - 1]
+            val_total1 = total1[m10 - 1]
+            print(val_total1)
+
+            rem_budget = val_total1 - val_total
+
+            hig = values[:]
+            del (hig[-1])
+            max_exp = max(hig)
+
+            labels = ['loans', 'salaries', 'maintenance', 'inventory', 'party fund', 'variable costs', 'bonuses',
+                      'operation losses', 'travel expenses', 'charity', 'total']
+            context = {'values': values, 'values1': values1, 'month': m2, 'labels': labels, 'total': val_total,
+                       'total1': val_total1, 'rem_budget': rem_budget, 'max_exp': max_exp, 'dep':cur_dep[0], 'month_number': m10, 'dep_number':department}
+
+            if request.method == 'POST':
+                if request.method == 'POST' and 'Submit' in request.POST:
+                    print('ok ok')
+                    m = request.POST['mymonth']
+                    m = str(m)
+                    m = m.lower()
+                    print(m)
+                    if m == 'none':
+                        messages.add_message(request, messages.INFO, 'Error No Month Selected')
+                    if m == 'january':
+                        s = 1
+                    if m == 'february':
+                        s = 2
+                    if m == 'march':
+                        s = 3
+                    if m == 'april':
+                        s = 4
+                    if m == 'may':
+                        s = 5
+                    if m == 'june':
+                        s = 6
+                    if m == 'july':
+                        s = 7
+                    if m == 'august':
+                        s = 8
+                    if m == 'september':
+                        s = 9
+                    if m == 'october':
+                        s = 10
+                    if m == 'november':
+                        s = 11
+                    if m == 'december':
+                        s = 12
+                    l = request.POST['myselection']
+                    l = str(l)
+                    l = l.lower()
+                    print(l)
+                    bal = request.POST['exp']
+                    print(bal)
+                    print(s)
+                    row = 1
+                    column = 1
+
+                    # Adding Data to Excel
+
+                    for i in range(1, 12):
+                        ref = ws.cell(row=row, column=i)
+                        ref_value = ref.value
+                        ref_value = str(ref_value)
+                        ref_value = ref_value.lower()
+                        # print(ref_value)
+                        if ref_value == l:
+                            ws.cell(row=s + 1, column=i, value=int(bal))
+                            workbook.save(fn)
+                            break
+                        else:
+                            continue
+
+                elif request.method == 'POST' and 'Submit1' in request.POST:
+                    print('yes yes')
+                    m = request.POST['mymonth1']
+                    m = str(m)
+                    m = m.lower()
+                    print(m)
+                    if m == 'none':
+                        messages.add_message(request, messages.INFO, 'Error No Month Selected')
+                    if m == 'january':
+                        s = 1
+                    if m == 'february':
+                        s = 2
+                    if m == 'march':
+                        s = 3
+                    if m == 'april':
+                        s = 4
+                    if m == 'may':
+                        s = 5
+                    if m == 'june':
+                        s = 6
+                    if m == 'july':
+                        s = 7
+                    if m == 'august':
+                        s = 8
+                    if m == 'september':
+                        s = 9
+                    if m == 'october':
+                        s = 10
+                    if m == 'november':
+                        s = 11
+                    if m == 'december':
+                        s = 12
+                    l = request.POST['myselection1']
+                    l = str(l)
+                    l = l.lower()
+                    print(l)
+                    bal = request.POST['exp1']
+                    print(bal)
+                    print(s)
+                    row = 1
+                    column = 1
+
+                    # Adding Data to Excel
+
+                    for i in range(1, 12):
+                        ref = ws1.cell(row=row, column=i)
+                        ref_value = ref.value
+                        ref_value = str(ref_value)
+                        ref_value = ref_value.lower()
+                        # print(ref_value)
+                        if ref_value == l:
+                            ws1.cell(row=s + 1, column=i, value=int(bal))
+                            workbook.save(fn)
+                            break
+                        else:
+                            continue
+
+            # Calculating Total Column
+
+            fn = str(fn)
+            workbook = load_workbook(fn)
+            ws = workbook.get_sheet_by_name('expenses')
+            ws1 = workbook.get_sheet_by_name('budget')
+            for i in range(2,14):
+                total12 = 0
+                total13 = 0
+                for j in range(1,11):
+                    ref = ws.cell(row = i, column = j)
+                    ref1 = ws1.cell(row=i, column = j)
+                    ref_value1 = ref1.value
+                    ref_value = ref.value
+                    if ref_value == None:
+                        ref_value = 0
+                    if ref_value1 == None:
+                        ref_value1 = 0
+                    total12 = total12 + ref_value
+                    total13 = total13 + ref_value1
+                ws.cell(row = i, column = 11).value = total12
+                ws1.cell(row = i, column = 11).value = total13
+                workbook.save(fn)
+                # print(total12)
+                # print(total13)
+            return render(request, 'accounts/home_corp.html', context=context)
+
     return render(request, 'accounts/home_corp.html')
 
 
@@ -1083,8 +1372,13 @@ def graph_view(request):
 def graph_view_corp(request):
     u = request.user.username
     u = str(u)
-    fn = (settings.MEDIA_ROOT + r'\uploads\Organ_' + u + '_General.xlsx')
-    fn = str(fn)
+    if Org_User.objects.filter(username=u).exists():
+        u = request.user.username
+        u = str(u)
+        file = Org_User.objects.get(username=u).e_file_1
+        print(file)
+        file = str(file)
+        fn = settings.MEDIA_ROOT + '\\' + file
     workbook = load_workbook(fn)
     ws = workbook.get_sheet_by_name('expenses')
     values = []
@@ -1246,7 +1540,7 @@ def org_register_view(request):
         email = request.POST['email']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
-        dep = request.POST['departments']
+        dep =request.POST.getlist('departments')
         print(dep)
         if password1 == password2:
             if User.objects.filter(username=username).exists():
@@ -1270,9 +1564,9 @@ def org_register_view(request):
                 ws2.append(headers)
                 u = username
                 u = str(u)
-                wb1.save(settings.MEDIA_ROOT + r'\uploads\Organ_' + u + '_General.xlsx')
-                fn = (r'uploads\Organ_' + u + '_General.xlsx')
-                s.e_file = fn
+                wb1.save(settings.MEDIA_ROOT + r'\uploads\Organ_' + u + '_'+ dep[0] + '_1.xlsx')
+                fn = (r'uploads\Organ_' + u + '_' + dep[0] + '_1.xlsx')
+                s.e_file_1 = fn
                 s.save()
 
                 # Workbook 2 Creation
@@ -1284,9 +1578,9 @@ def org_register_view(request):
                 ws2.append(headers)
                 u = username
                 u = str(u)
-                wb2.save(settings.MEDIA_ROOT + r'\uploads\Organ_' + u + '_Marketing.xlsx')
-                fn = (r'uploads\Organ_' + u + '_Marketing.xlsx')
-                s.e_file = fn
+                wb2.save(settings.MEDIA_ROOT + r'\uploads\Organ_' + u + '_' + dep[1] + '_2.xlsx')
+                fn = (r'uploads\Organ_' + u + '_' + dep[1] + '_2.xlsx')
+                s.e_file_2 = fn
                 s.save()
 
                 # Workbook 3 Creation
@@ -1298,9 +1592,9 @@ def org_register_view(request):
                 ws2.append(headers)
                 u = username
                 u = str(u)
-                wb3.save(settings.MEDIA_ROOT + r'\uploads\Organ_' + u + '_Sales.xlsx')
-                fn = (r'uploads\Organ_' + u + '_Sales.xlsx')
-                s.e_file = fn
+                wb3.save(settings.MEDIA_ROOT + r'\uploads\Organ_' + u + '_' + dep[2] + '_3.xlsx')
+                fn = (r'uploads\Organ_' + u + '_' + dep[2] + '_3.xlsx')
+                s.e_file_3 = fn
                 s.save()
 
                 # Workbook 4 Creation
@@ -1312,9 +1606,9 @@ def org_register_view(request):
                 ws2.append(headers)
                 u = username
                 u = str(u)
-                wb4.save(settings.MEDIA_ROOT + r'\uploads\Organ_' + u + '_HR.xlsx')
-                fn = (r'uploads\Organ_' + u + '_HR.xlsx')
-                s.e_file = fn
+                wb4.save(settings.MEDIA_ROOT + r'\uploads\Organ_' + u + '_' + dep[3] + '_4.xlsx')
+                fn = (r'uploads\Organ_' + u + '_' + dep[3] + '_4.xlsx')
+                s.e_file_4 = fn
                 s.save()
         else:
             print("Password does not match")
@@ -1610,7 +1904,16 @@ def indiv_pdf_view(request):
 
     bc.categoryAxis.categoryNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     bc.categoryAxis.labels.angle = 30
-
+    legend = Legend()
+    legend.alignment = 'right'
+    legend.x = 480
+    legend.y = 260
+    legend.deltax = 60
+    legend.dxTextSpace = 10
+    legend.columnMaximum = 4
+    items = [(colors.lightgreen, 'Expenses'), (colors.lightblue, 'Budget')]
+    legend.colorNamePairs = items
+    d2.add(legend)
     d2.add(bc)
     d2.drawOn(c, 40, 480)
 
@@ -1644,6 +1947,13 @@ def indiv_pdf_view(request):
 def corp_pdf_view(request):
 
     u = request.user.username
+    if Org_User.objects.filter(username=u).exists():
+        u = request.user.username
+        u = str(u)
+        file = Org_User.objects.get(username=u).e_file_1
+        print(file)
+        file = str(file)
+        fn = settings.MEDIA_ROOT + '\\' + file
     user = Org_User.objects.get(username=u)
     f_name = user.c_name
     # l_name = user.l_name
@@ -1728,7 +2038,7 @@ def corp_pdf_view(request):
         HexColor("#943126"),
         HexColor('#d5f5e3')
     ]
-    fn = (settings.MEDIA_ROOT + r'\uploads\Organ_' + u + '_General.xlsx')
+    fn = fn
 
     workbook = load_workbook(fn)
     ws = workbook['expenses']
@@ -1912,6 +2222,16 @@ def corp_pdf_view(request):
 
     bc.categoryAxis.categoryNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     bc.categoryAxis.labels.angle = 30
+    legend = Legend()
+    legend.alignment = 'right'
+    legend.x = 480
+    legend.y = 260
+    legend.deltax = 60
+    legend.dxTextSpace = 10
+    legend.columnMaximum = 4
+    items = [(colors.lightgreen, 'Expenses'), (colors.lightblue, 'Budget')]
+    legend.colorNamePairs = items
+    d2.add(legend)
 
     d2.add(bc)
     d2.drawOn(c, 40, 480)

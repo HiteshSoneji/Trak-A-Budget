@@ -139,11 +139,11 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="../../accounts/home_corp">Home</a></li>
+                    <li><a href="../../../accounts/home_corp">Home</a></li>
                     <li><a id="myBtn1" data-toggle="modal" data-target="#exampleModal1">Add Budget</a></li>
                     <li><a id="myBtn" data-toggle="modal" data-target="#exampleModal">Add Expenses</a></li>
-                    <li><a href="../../accounts/home_graph_corp">Show Graphs</a></li>
-                    <li><a href="../../accounts/corp_pdf">Generate Report</a></li>
+                    <li><a href="../../../accounts/home_graph_corp">Show Graphs</a></li>
+                    <li><a href="../../../accounts/corp_pdf">Generate Report</a></li>
                     <li><a href="#">Profile</a></li>
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Contact Us</a></li>
@@ -169,18 +169,18 @@
                     </button>
                     <div class="dropdown-menu" id='mymonth1' data-model-name="mymonth1"
                          aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="../../accounts/home/1">January</a>
-                        <a class="dropdown-item" href="../../accounts/home/2">February</a>
-                        <a class="dropdown-item" href="../../accounts/home/3">March</a>
-                        <a class="dropdown-item" href="../../accounts/home/4">April</a>
-                        <a class="dropdown-item" href="../../accounts/home/5">May</a>
-                        <a class="dropdown-item" href="../../accounts/home/6">June</a>
-                        <a class="dropdown-item" href="../../accounts/home/7">July</a>
-                        <a class="dropdown-item" href="../../accounts/home/8">August</a>
-                        <a class="dropdown-item" href="../../accounts/home/9">September</a>
-                        <a class="dropdown-item" href="../../accounts/home/10">October</a>
-                        <a class="dropdown-item" href="../../accounts/home/11">November</a>
-                        <a class="dropdown-item" href="../../accounts/home/12">December</a>
+                        <a class="dropdown-item" href="../../../accounts/home_corp/{{ dep_number }}/1">January</a>
+                        <a class="dropdown-item" href="../../../accounts/home_corp/{{ dep_number }}/2">February</a>
+                        <a class="dropdown-item" href="../../../accounts/home_corp/{{ dep_number }}/3">March</a>
+                        <a class="dropdown-item" href="../../../accounts/home_corp/{{ dep_number }}/4">April</a>
+                        <a class="dropdown-item" href="../../../accounts/home_corp/{{ dep_number }}/5">May</a>
+                        <a class="dropdown-item" href="../../../accounts/home_corp/{{ dep_number }}/6">June</a>
+                        <a class="dropdown-item" href="../../../accounts/home_corp/{{ dep_number }}/7">July</a>
+                        <a class="dropdown-item" href="../../../accounts/home_corp/{{ dep_number }}/8">August</a>
+                        <a class="dropdown-item" href="../../../accounts/home_corp/{{ dep_number }}/9">September</a>
+                        <a class="dropdown-item" href="../../../accounts/home_corp/{{ dep_number }}/10">October</a>
+                        <a class="dropdown-item" href="../../../accounts/home_corp/{{ dep_number }}/11">November</a>
+                        <a class="dropdown-item" href="../../../accounts/home_corp/{{ dep_number }}/12">December</a>
                     </div>
                 </form>
 
@@ -199,15 +199,15 @@
                     </button>
                     <div class="dropdown-menu" id='dept' data-model-name="dept"
                          aria-labelledby="dropdownMenuButton1">
-                        <a class="dropdown-item" href="#">General</a>
-                        <a class="dropdown-item" href="#">HR</a>
-                        <a class="dropdown-item" href="#">Marketing</a>
-                        <a class="dropdown-item" href="#">Sales</a>
+                        <a class="dropdown-item" href="../../../accounts/home_corp/1/{{ month_number }}">General</a>
+                        <a class="dropdown-item" href="../../../accounts/home_corp/2/{{ month_number }}">HR</a>
+                        <a class="dropdown-item" href="../../../accounts/home_corp/3/{{ month_number }}">Marketing</a>
+                        <a class="dropdown-item" href="../../../accounts/home_corp/4/{{ month_number }}">Sales</a>
                     </div>
                 </form>
             </div>
 
-                <p class="dept-name">--> Dept-Name <--</p>
+                <p class="dept-name">{{ dep }}</p>
         </div>
         <div class="row">
             <div class="col">
