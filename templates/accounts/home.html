@@ -1,9 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home Page</title>
+    <title>Trak-A-Budget Home</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -27,8 +28,26 @@
             height: 60px;
         }
 
-        .navbar-brand {
-            margin-top: -130px;
+        #nav {
+            background-image: url("../../static/back.png");
+            background-repeat: round;
+            margin-top: -3px;
+        }
+
+        #header {
+            background-image: url("../../static/back.png");
+        }
+
+        .side_links {
+            font-size: 18px;
+            margin-left: -3px;
+            width: 220px;
+        }
+
+        .side_links:hover {
+            border: gold groove;
+            border-radius: 12px;
+            font-size: 22px;
         }
 
         .sign-out-main {
@@ -46,26 +65,31 @@
 
         .card-budget {
             margin-left: -30px;
-            border-radius: 2rem;
-
+            border-bottom-color: crimson;
+            border-bottom-style: groove;
+            border-bottom-width: 4px;
         }
 
         .card-expenses {
             margin-left: -10px;
-            border-radius: 2rem;
-
+            border-bottom-color: crimson;
+            border-bottom-style: groove;
+            border-bottom-width: 4px;
         }
 
         .card-highest {
             margin-left: 10px;
-            border-radius: 2rem;
-
+            border-bottom-color: crimson;
+            border-bottom-style: groove;
+            border-bottom-width: 4px;
         }
 
         .card-lowest {
             margin-left: 20px;
             margin-right: -100px;
-            border-radius: 2rem;
+            border-bottom-color: crimson;
+            border-bottom-style: groove;
+            border-bottom-width: 4px;
         }
 
         {#.bg{#}
@@ -88,8 +112,8 @@
             margin-top: 20px;
             width: 800px;
             height: 500px;
-            border-left: 3.2px solid;
-            border-color: darkblue;
+        / / border: 3.2 px solid;
+        / / border-color: darkblue;
         }
 
         .about {
@@ -110,15 +134,308 @@
             margin-top: 20px;
             margin-left: -50px;
         }
+
+        .modal-header {
+            background-color: darkslategrey;
+        }
+
+        .modal-title {
+            color: aqua;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .modal-body {
+            background-image: url("../../static/modal_bg.png");
+            background-size: cover;
+            color: lightgoldenrodyellow;
+            background-color: #009153;
+        }
+
+        .modal-footer {
+            background-color: darkslategrey;
+        }
+
+        #mymonth {
+            background-color: darkslategrey;
+        }
+
+        #mymonth1 {
+            background-color: darkslategrey;
+        }
+
+        #myselection {
+            background-color: darkslategrey;
+        }
+
+        #myselection1 {
+            background-color: darkslategrey;
+        }
+
+        .exp {
+            background-color: darkslategrey;
+        }
+
+        #exp1 {
+            background-color: darkslategrey;
+        }
+
+        .sub_btn {
+            background-color: deepskyblue;
+            border-radius: 6px;
+            border: none;
+            width: 100px;
+            height: 30px;
+            margin-top: 6px;
+            margin-left: 20px;
+        }
+
+        .cls_btn {
+            background-color: lightsalmon;
+            border-radius: 6px;
+            border: none;
+            width: 80px;
+            height: 30px;
+        }
+
+        footer {
+            margin-top: 100px;
+            padding-top: 0px;
+            background-color: #c11768;
+        {#background-color: #520c96;#} color: #fff;
+        }
+
+        .footer {
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+
+        .footer p {
+            font-family: "Roboto", sans-serif !important;
+        }
+
+        .footer .footer_top {
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+
+        .footer .footer_top .footer_widget {
+            margin-bottom: 40px;
+        }
+
+        .footer .footer_top .footer_widget .footer_title {
+            font-size: 20px;
+            font-weight: 500;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            font-family: "Oswald", sans-serif;
+        }
+
+        .footer .footer_top .footer_widget .footer_logo {
+            font-size: 22px;
+            font-weight: 400;
+            color: #FFFFFF;
+            text-transform: capitalize;
+            margin-bottom: 0;
+            margin-top: 40px;
+        }
+
+        .footer .footer_top .footer_widget p {
+            color: gold;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 27px;
+        }
+
+        .footer .footer_top .footer_widget p a {
+            color: gold;
+        }
+
+        .footer .footer_top .footer_widget p a:hover {
+            color: #FFFFFF;
+        }
+
+        .footer .footer_top .footer_widget p.footer_text {
+            font-size: 16px;
+            color: #ff2424;
+            margin-bottom: 23px;
+            font-weight: 400;
+            line-height: 28px;
+        }
+
+        .footer .footer_top .footer_widget p.footer_text a.domain {
+            color: #ff2424;
+            font-weight: 400;
+        }
+
+        .footer .footer_top .footer_widget p.footer_text a.domain:hover {
+            color: #FFFFFF;
+            border-bottom: 1px solid #FFFFFF;
+        }
+
+        .footer .footer_top .footer_widget p.footer_text.doanar a {
+            font-weight: 500;
+            color: #ff2424;
+        }
+
+        .footer .footer_top .footer_widget p.footer_text.doanar a:hover {
+            color: #FFFFFF;
+            border-bottom: 1px solid #FFFFFF;
+        }
+
+        .footer .footer_top .footer_widget p.footer_text.doanar a.first {
+            margin-bottom: 10px;
+        }
+
+        .footer_title:hover {
+            border-bottom: 2px gold groove;
+        }
+
+        .footer .footer_top .footer_widget ul li {
+            color: gold;
+            font-size: 14px;
+            line-height: 27px;
+        }
+
+        .footer .footer_top .footer_widget ul li a {
+            color: gold;
+            font-weight: 400;
+            font-family: "Roboto", sans-serif;
+        }
+
+        .footer .footer_top .footer_widget ul li a:hover {
+            color: #FFFFFF;
+        }
+
+        .footer .footer_top .footer_widget .newsletter_form {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .footer .footer_top .footer_widget .newsletter_form input {
+            width: 100%;
+            height: 40px;
+            background: #fff;
+            padding-left: 20px;
+            font-size: 13px;
+            color: #000;
+            border: none;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            font-family: "Roboto", sans-serif;
+        }
+
+        .footer .footer_top .footer_widget .newsletter_form input::placeholder {
+            font-size: 13px;
+            color: #AAB1B7;
+            font-family: "Roboto", sans-serif;
+        }
+
+        .footer .footer_top .footer_widget .newsletter_form input:focus {
+            outline: none;
+        }
+
+        .footer .footer_top .footer_widget .newsletter_form button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 40px;
+            border: none;
+            font-size: 14px;
+            color: #fff;
+            background: #ff2424;
+            padding: 10px;
+            padding: 0 22px;
+            cursor: pointer;
+            border-radius: 5px;
+            top: 0px;
+            right: 0px;
+            font-size: 13px;
+            font-weight: 500;
+            font-family: "Roboto", sans-serif;
+        }
+
+        .footer .footer_top .footer_widget .newsletter_text {
+            font-size: 14px;
+            color: gold;
+            line-height: 26px;
+            margin-bottom: 46px;
+        }
+
+        .footer .copy-right_text .footer_border {
+            border-top: 1px solid #373c47;
+            margin-top: 20px;
+            margin-bottom: -75px;
+        }
+
+        .footer .copy-right_text .copy_right {
+            font-size: 14px;
+            color: #777777;
+            margin-bottom: 0;
+            font-weight: 400;
+        }
+
+        .footer .copy-right_text .copy_right a {
+            color: #ff2424;
+        }
+
+        .footer .socail_links {
+            text-align: right;
+        }
+
+        .footer .socail_links ul li {
+            display: inline-block;
+            transition: 0.3s;
+            margin-left: 33px;
+        }
+
+        .footer .socail_links ul li a {
+            font-size: 14px;
+            display: inline-block;
+            color: #8d9096 !important;
+            background: transparent;
+            transition: 0.3s;
+        }
+
+        .footer .socail_links ul li:hover a {
+            color: #ff2424 !important;
+        }
+
+        #budg {
+            width: 220px;
+            height: 30px;
+            margin-left: -20px;
+            margin-top: -120px;
+        }
+        #logo{
+            margin-top: -60px;
+        }
+        .rupee {
+            margin-top: 15px;
+            margin-left: 25px;
+
+        }
+
+        .card-text {
+            margin-top: -21px;
+            margin-left: 45px;
+        }
+
+        .card-title {
+            margin-top: -7px;
+        }
+
+
     </style>
-   
+
 </head>
 <body>
 {% if user.is_authenticated %}
     {#{{ user.first_name }}<br>#}
     {#    #}
     {#<h2>Modal Example</h2>#}
-    <nav class="navbar navbar-inverse navbar-fixed-left " style='background-color : #7daed4;'>
+    <nav class="navbar navbar-inverse navbar-fixed-left " id="nav">
         <div class="container">
             <div class="navbar-header">
                 <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -127,25 +444,26 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </button> -->
-                <a class="navbar-brand" href="#">Budget Tracker</a>
+                <img src="../../static/budgetable.png" id="budg">
+                <img src="../../static/logo_2.png" width="88px" height="88px" id="logo">
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="../../accounts/home">Home</a></li>
-                    <li><a id="myBtn1"  data-toggle="modal" data-target="#exampleModal1">Add Budget</a></li>
-                    <li><a id="myBtn" data-toggle="modal" data-target="#exampleModal">Add Expenses</a></li>
-                    <li><a href="../../accounts/home_graph">Show Graphs</a></li>
-                    <li><a href="../../accounts/indiv_pdf">Generate Report</a></li>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact Us</a></li>
-
+                    <li><a href="../../accounts/home" class="side_links">Home</a></li>
+                    <li><a id="myBtn1" data-toggle="modal" data-target="#exampleModal1" class="side_links">Add
+                        Budget</a></li>
+                    <li><a id="myBtn" data-toggle="modal" data-target="#exampleModal" class="side_links">Add
+                        Expenses</a></li>
+                    <li><a href="../../accounts/home_graph" class="side_links">Show Graphs</a></li>
+                    <li><a href="../../accounts/indiv_pdf" class="side_links">Generate Report</a></li>
+                    <li><a href="../../accounts/profile_ind" class="side_links">Profile</a></li>
+                    <li><a href="../../accounts/about" class="side_links">About Us</a></li>
                 </ul>
 
             </div>
         </div>
     </nav>
-    <div class="page-header" style='background-color : #7daed4;'>
+    <div class="page-header" id='header'>
         <p class='sign-out-main'><a class='sign-out' href="../../accounts/logout">Sign Out</a></p>
 
     </div>
@@ -159,7 +477,7 @@
                             value="Month">
                         Month
                     </button>
-                    <div class="dropdown-menu" id='mymonth1' data-model-name="mymonth1"
+                    <div class="dropdown-menu" id='mymonth2' data-model-name="mymonth1"
                          aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="../../accounts/home/1">January</a>
                         <a class="dropdown-item" href="../../accounts/home/2">February</a>
@@ -183,33 +501,36 @@
         </div>
         <div class="row">
             <div class="col">
-                <div class='card-budget card' style="width: 23rem; background-color : #e8a220;">
+                <div class='card-budget card' style="width: 23rem; height: 12rem; background-color : #e8a220;">
                     <div class="card-body">
-                        <h5 class="card-title">Total Budget</h5>
+                        <h5 class="card-title" style="font-size: 25px;">Total Budget</h5>
                         {% autoescape off %}
-                            <h5 class="card-text">Rs. {{ total1 }}<br><br><br></h5>
+                            <img src="../../static/rupee_symbol.png" width="17px" height="22px" class="rupee">
+                            <h5 class="card-text"> &nbsp;{{ total1 }}<br><br><br></h5>
                         {% endautoescape %}
                         <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                     </div>
                 </div>
             </div>
             <div class="col">
-                <div class='card-expenses card' style="width: 23rem; background-color : #eb73cf;">
+                <div class='card-expenses card' style="width: 23rem; height: 12rem; background-color : #eb73cf;">
                     <div class="card-body">
-                        <h5 class="card-title">Total Expense</h5>
+                        <h5 class="card-title" style="font-size: 25px;">Total Expense</h5>
                         {% autoescape off %}
-                            <h5 class="card-text">Rs. {{ total }}<br><br><br></h5>
+                            <img src="../../static/rupee_symbol.png" width="17px" height="22px" class="rupee">
+                            <h5 class="card-text"> &nbsp;{{ total }}<br><br><br></h5>
                         {% endautoescape %}
                         <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                     </div>
                 </div>
             </div>
             <div class="col">
-                <div class='card-highest card' style="width: 23rem; background-color : #5d80e8;">
+                <div class='card-highest card' style="width: 23rem; height: 12rem; background-color : #5d80e8;">
                     <div class="card-body">
-                        <h5 class="card-title">Highest Expense</h5>
+                        <h5 class="card-title" style="font-size: 25px;">Highest Expense</h5>
                         {% autoescape off %}
-                            <h5 class="card-text">Rs. {{ max_exp }}<br><br><br></h5>
+                            <img src="../../static/rupee_symbol.png" width="17px" height="22px" class="rupee">
+                            <h5 class="card-text"> &nbsp;{{ max_exp }}<br><br><br></h5>
                         {% endautoescape %}
                         <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                     </div>
@@ -217,11 +538,12 @@
             </div>
 
             <div class="col">
-                <div class='card-lowest card' style="width: 23rem; background-color : #72eb6e;">
+                <div class='card-lowest card' style="width: 23rem; height: 12rem; background-color : #72eb6e;">
                     <div class="card-body">
-                        <h5 class="card-title">Remaining Budget</h5>
+                        <h5 class="card-title" style="font-size: 24.5px;">Remaining Budget</h5>
                         {% autoescape off %}
-                            <h5 class="card-text">Rs. {{ rem_budget }}<br><br><br></h5>
+                            <img src="../../static/rupee_symbol.png" width="17px" height="22px" class="rupee">
+                            <h5 class="card-text"> &nbsp;{{ rem_budget }}<br><br><br></h5>
                         {% endautoescape %}
                         <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                     </div>
@@ -348,7 +670,6 @@
                         {% csrf_token %}
                         Select the month for the budget:
                         <select id="mymonth" name="mymonth">
-                            <option value="None" name="None">None</option>
                             <option value="January" name="January">January</option>
                             <option value="February" name="February">February</option>
                             <option value="March" name="March">March</option>
@@ -364,7 +685,6 @@
                         </select>
                         <p>The selected value:
                             <select id="myselection" name="myselection">
-                                <option value="None" name="None">None</option>
                                 <option value="Loans" name="Loans">Loans</option>
                                 <option value="Utility Bills" name="Utility Bills">Utility Bills</option>
                                 <option value="Insurance" name="Insurance">Insurance</option>
@@ -379,19 +699,20 @@
                                 <option value="Maintainance">Maintainance</option>
                             </select>
                             <br>
-                        <div><br><label id='q2'>Expense</label>:<input type='number' id='exp' name='exp'
-                                                                       placeholder='Enter Balence' required='required' min="0">
+                        <div><br><label id='q2'>Expense</label>:<input type='number' class='exp' name='exp'
+                                                                       placeholder='Enter Balance' required='required'
+                                                                       min="0">
                             <br></div>
 
 
-                        <input type="submit" class="btn btn-outline-success" name="Submit" value="Add Expense"></input>
+                        <input type="submit" class="sub_btn" name="Submit" value="Add Expense"></input>
 
                         <br>
                         </p>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="cls_btn" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -412,7 +733,6 @@
                         {% csrf_token %}
                         Select the month for the budget:
                         <select id="mymonth1" name="mymonth1">
-                            <option value="None" name="None">None</option>
                             <option value="January" name="January">January</option>
                             <option value="February" name="February">February</option>
                             <option value="March" name="March">March</option>
@@ -428,7 +748,6 @@
                         </select>
                         <p>The selected value:
                             <select id="myselection1" name="myselection1">
-                                <option value="None" name="None">None</option>
                                 <option value="Loans" name="Loans">Loans</option>
                                 <option value="Utility Bills" name="Utility Bills">Utility Bills</option>
                                 <option value="Insurance" name="Insurance">Insurance</option>
@@ -444,21 +763,125 @@
                             </select>
                             <br>
                         <div><br><label id='q2'>Budget</label>:<input type='number' id='exp1' name='exp1'
-                                                                       placeholder='Enter Balance:' required='required' min="0">
+                                                                      placeholder='Enter Balance:' required='required'
+                                                                      min="0">
                             <br></div>
 
 
-                        <input type="submit" class="btn btn-outline-success" name="Submit1" value="Add Budget"></input>
+                        <input type="submit" class="sub_btn" name="Submit1" value="Add Budget"></input>
                         <br>
                         </p>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="cls_btn" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
+    <footer class="footer footer_bg_1">
+        <div class="footer_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-md-6 col-lg-3">
+                        <div class="footer_widget ">
+                            <h3 class="footer_title">
+                                About Us
+                            </h3>
+                            <p>A budget is more than just a series of numbers on a page; it is an embodiment of our
+                                values</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-lg-3">
+                        <div class="footer_widget ">
+                            <h3 class="footer_title">
+                                Contact Info
+                            </h3>
+                            <p>Address :Borivali(W),
+                                Mumbai-92</p>
+                            <ul>
+                                <li><a href="#">Phone : +8880 44338899</a></li>
+                                <li><a href="#">Email : trakabudget@gmail.com</a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-lg-3">
+                        <div class="footer_widget ">
+                            <h3 class="footer_title">
+                                Important Link
+                            </h3>
+                            <ul>
+                                <li><a href="#">View Profile</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">Support</a></li>
+                                <li><a href="#">About Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-lg-3">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                Newsletter
+                            </h3>
+                            <p class="newsletter_text">
+                                A budget is telling your money where to go instead of wondering where it went.
+                            </p>
+                            <form action="#" class="newsletter_form">
+                                <input type="text" placeholder="Enter your mail">
+                                <button type="submit"><i class="fa fa-paper-plane"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="copy-right_text">
+            <div class="container">
+                <div class="footer_border"></div>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <p class="copy_right">
+                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                            All rights reserved | This website is made with <i class="fa fa-heart"
+                                                                               aria-hidden="true"></i> by <a
+                                    href="../../accounts/home" target="_blank">Trak-A-Budget</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="socail_links">
+                            <ul class="socail_links">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-dribbble"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-behance"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 {% endif %}
 
 </body>

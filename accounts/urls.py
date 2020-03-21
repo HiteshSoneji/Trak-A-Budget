@@ -19,6 +19,10 @@ urlpatterns = [
     path('accounts/org_register/', views.org_register_view, name = 'org_register'),
     path('accounts/indiv_pdf/', views.indiv_pdf_view, name='ind_pdf'),
     path('accounts/corp_pdf/', views.corp_pdf_view, name='corp_pdf'),
+    path('accounts/profile_ind/', views.ind_profile_view, name='profile_ind'),
+    path('accounts/profile_corp/', views.corp_profile_view, name='profile_corp'),
+    path('accounts/about/', views.about_view, name='about'),
+    path('accounts/about_corp/', views.about_corp_view, name='about'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('', views.splash, name='splash'),
 ]

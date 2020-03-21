@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>About Us</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -19,6 +20,96 @@
     <link rel="stylesheet"
           href="https://cdn.rawgit.com/mladenplavsic/bootstrap-navbar-sidebar/3bd282bd/docs/navbar-fixed-left.min.css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        .page-header {
+            margin-top: -23px;
+            height: 60px;
+        }
+
+        .navbar-brand {
+            margin-top: -132px;
+        }
+
+        .sign-out-main {
+            padding-top: 25px;
+            font-size: 16px;
+            padding-left: 1220px;
+        }
+
+        .sign-out {
+            margin-top: 200px;
+            padding-top: 100px;
+            text-decoration: none;
+            color: white;
+        }
+        #bg
+        {
+            background-image: url("../../static/BG_profile.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 1920px;
+            height: 1080px;
+        }
+        #bg
+        {
+            background-image: url("../../static/bg_about.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            overflow-y: hidden;
+            width: 1920px;
+            height: 1080px;
+        }
+        body{
+            background-color: #13a173;
+            overflow-y: hidden;
+
+        }
+        .show
+        {
+            height: 40px;
+            width: 280px;
+        }
+        #f_name
+        {
+            background-color: transparent;
+            color: darkred;
+            font-size: 40px;
+            margin-left: 265px;
+            margin-top: 65px;
+            border-bottom: black 2px solid;
+        }
+        #f_name:hover
+        {
+            border-bottom: 2px solid darkred;
+        }
+        #username
+        {
+            background-color: transparent;
+            color: darkred;
+            font-size: 40px;
+            margin-left: 410px;
+            margin-top: 27px;
+            border-bottom: black 2px solid;
+        }
+        #username:hover
+        {
+            border-bottom: 2px solid darkred;
+        }
+        #email
+        {
+            background-color: transparent;
+            color: darkred;
+            font-size: 25px;
+            margin-left: 390px;
+            width: 340px;
+            margin-top: 35px;
+            border-bottom: black 2px solid;
+        }
+        #email:hover
+        {
+            border-bottom: 2px solid darkred;
+        }
+    </style>
     <style>
         .page-header {
             margin-top: -23px;
@@ -377,38 +468,8 @@
         #logo{
             margin-top: -60px;
         }
-        .rupee{
-            margin-top: 15px;
-            margin-left: 25px;
-
-        }
-        .card-text{
-            margin-top: -21px;
-            margin-left: 45px;
-        }
-        .card-title{
-            margin-top: -7px;
-        }
-        #pie-chart {
-            margin-left: 300px;
-            margin-top: 20px;
-            margin-bottom: -30px;
-
-        }
-
-        #bar-graph {
-            margin-left: -30px;
-            margin-right: -100px;
-            margin-top: 30px;
-            width: 1200px;
-            height: 500px;
-            border-top: 3.2px solid;
-            border-color: darkblue;
-        }
-
-
     </style>
-    <title>Graphs</title>
+    <title>Profile Page</title>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-left " id="nav">
@@ -430,173 +491,16 @@
                 <li><a id="myBtn" data-toggle="modal" data-target="#exampleModal" class="side_links">Add Expenses</a></li>
                 <li><a href="../../../accounts/home_graph_corp" class="side_links">Show Graphs</a></li>
                 <li><a href="../../../accounts/corp_pdf" class="side_links">Generate Report</a></li>
-                <li><a href="#" class="side_links">Profile</a></li>
+                <li><a href="../../../accounts/profile_corp" class="side_links">Profile</a></li>
                 <li><a href="../../../accounts/about_corp" class="side_links">About Us</a></li>
-
             </ul>
-
         </div>
     </div>
 </nav>
 <div class="page-header" id="header">
     <p class='sign-out-main'><a class='sign-out' href="../../accounts/logout">Sign Out</a></p></div>
-
-<div class="container">
-    {% autoescape off %}
-        <h5>Month : {{ month_name }}</h5>
-    {% endautoescape %}
-    <div class="row">
-        <div id="pie-chart">
-        </div>
-    </div>
-    <div class="row">
-        <div id="bar-graph">
-        </div>
-    </div>
-
+<div class="container" id="bg">
 </div>
-<script>
-    {% autoescape off %}
-        let labels = {{ labels }};
-        let values = {{ values }};
-    {% endautoescape %}
-    var data = [{
-        values: values,
-        labels: labels,
-        type: 'pie'
-    }];
 
-    var layout = {
-        {% autoescape off %}
-            title: 'Pie Chart for the month of: {{ month_name }}',
-        {% endautoescape %}
-        height: 450,
-        width: 600
-    };
-
-    Plotly.newPlot('pie-chart', data, layout, {displayModeBar: false});
-</script>
-<script>
-    {% autoescape off %}
-        let months = {{ months }};
-        let total = {{ total }};
-    {% endautoescape %}
-    var data = [
-        {
-            x: months,
-            y: total,
-            type: 'bar'
-        }
-    ];
-    var layout = {
-        title: 'Bar Graph comparing expenses with other months'
-    };
-
-    Plotly.newPlot('bar-graph', data, layout, {displayModeBar: false});
-</script>
-
-<footer class="footer footer_bg_1">
-    <div class="footer_top">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-3 col-md-6 col-lg-3">
-                    <div class="footer_widget ">
-                        <h3 class="footer_title">
-                            About Us
-                        </h3>
-                        <p>A budget is more than just a series of numbers on a page; it is an embodiment of our
-                            values</p>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6 col-lg-3">
-                    <div class="footer_widget ">
-                        <h3 class="footer_title">
-                            Contact Info
-                        </h3>
-                        <p>Address :Borivali(W),
-                            Mumbai-92</p>
-                        <ul>
-                            <li><a href="#">Phone : +8880 44338899</a></li>
-                            <li><a href="#">Email : trakabudget@gmail.com</a></li>
-                        </ul>
-
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6 col-lg-3">
-                    <div class="footer_widget ">
-                        <h3 class="footer_title">
-                            Important Link
-                        </h3>
-                        <ul>
-                            <li><a href="#">View Profile</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Support</a></li>
-                            <li><a href="#">About Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6 col-lg-3">
-                    <div class="footer_widget">
-                        <h3 class="footer_title">
-                            Newsletter
-                        </h3>
-                        <p class="newsletter_text">
-                            A budget is telling your money where to go instead of wondering where it went.
-                        </p>
-                        <form action="#" class="newsletter_form">
-                            <input type="text" placeholder="Enter your mail">
-                            <button type="submit"><i class="fa fa-paper-plane"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="copy-right_text">
-        <div class="container">
-            <div class="footer_border"></div>
-            <div class="row">
-                <div class="col-lg-8">
-                    <p class="copy_right">
-                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-                        All rights reserved | This website is made with <i class="fa fa-heart"
-                                                                           aria-hidden="true"></i> by <a
-                                href="../../accounts/home_corp" target="_blank">Trak-A-Budget</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                    </p>
-                </div>
-
-                <div class="col-lg-4">
-                    <div class="socail_links">
-                        <ul class="socail_links">
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-facebook" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-dribbble"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-behance"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
 </body>
 </html>

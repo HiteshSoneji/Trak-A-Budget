@@ -24,6 +24,7 @@ from reportlab.lib.colors import black, red, purple, green, maroon, brown, pink,
 from reportlab.graphics.charts.legends import Legend
 import time
 import datetime
+import random
 
 
 # Splash Screen (First Page)
@@ -193,12 +194,20 @@ def home(request):
             hig = values[:]
             del (hig[-1])
             max_exp = max(hig)
+            slog = ['A budget is more than just a series of numbers on a page; it is an embodiment of our values',
+                    'A budget takes the fun out of money.', 'Money is a terrible master but an excellent servant.',
+                    'A budget is telling your money where to go instead of wondering where it went.',
+                    'Every cent you own and every moment you spend is always an investment',
+                    'Budgeting has only one rule: Do not go over budget',
+                    'Do not tell me what you value, show me your budget, and I will tell you what you value',
+                    'A penny saved is worth two pennies earned . . . after taxes.']
 
+            slogan = slog[random.randrange(7)]
             labels = ['loans', 'utility bills', 'insurance', 'entertainment', 'groceries', 'transportation',
                       'retirement fund',
                       'emergency fund', 'childcare', 'clothing', 'maintenance']
             context = {'values': values, 'values1': values1, 'month': m2, 'labels': labels, 'total': val_total,
-                       'total1': val_total1, 'rem_budget': rem_budget, 'max_exp': max_exp}
+                       'total1': val_total1, 'rem_budget': rem_budget, 'max_exp': max_exp, 'slogan':slogan}
 
             # Fetching the category and amount
 
@@ -350,6 +359,7 @@ def home_corp(request):
     # Checking current user and loading excel
     global m10
     global department
+    global depa
     u = request.user.username
     u = str(u)
     all_lists = []
@@ -397,6 +407,7 @@ def home_corp(request):
             print(cur_dep)
             cur_dep = cur_dep.split('.')
             print(cur_dep[0])
+            depa = cur_dep[0]
             fn = str(fn)
             workbook = load_workbook(fn)
             ws = workbook.get_sheet_by_name('expenses')
@@ -478,12 +489,20 @@ def home_corp(request):
             hig = values[:]
             del (hig[-1])
             max_exp = max(hig)
+            slog = ['A budget is more than just a series of numbers on a page; it is an embodiment of our values',
+                    'A budget takes the fun out of money.', 'Money is a terrible master but an excellent servant.',
+                    'A budget is telling your money where to go instead of wondering where it went.',
+                    'Every cent you own and every moment you spend is always an investment',
+                    'Budgeting has only one rule: Do not go over budget',
+                    'Do not tell me what you value, show me your budget, and I will tell you what you value',
+                    'A penny saved is worth two pennies earned . . . after taxes.']
 
+            slogan = slog[random.randrange(7)]
             labels = ['loans', 'salaries', 'maintenance', 'inventory', 'party fund', 'variable costs', 'bonuses',
                       'operation losses', 'travel expenses', 'charity', 'total']
             context = {'values': values, 'values1': values1, 'month': m2, 'labels': labels, 'total': val_total,
                        'total1': val_total1, 'rem_budget': rem_budget, 'max_exp': max_exp, 'dep': cur_dep[0],
-                       'dep_number': department, 'month_number': m10, 'all_lists':all_lists}
+                       'dep_number': department, 'month_number': m10, 'all_lists': all_lists, 'slogan':slogan}
 
             if request.method == 'POST':
                 if request.method == 'POST' and 'Submit' in request.POST:
@@ -632,6 +651,8 @@ def home_corp(request):
 def home_corp1(request, int_object1, int_object2):
     global m10
     global department
+    global depa
+
     if int_object1 is None:
         department = 1
     else:
@@ -703,6 +724,7 @@ def home_corp1(request, int_object1, int_object2):
             print(cur_dep)
             cur_dep = cur_dep.split('.')
             print(cur_dep[0])
+            depa = cur_dep[0]
             fn = str(fn)
             workbook = load_workbook(fn)
             ws = workbook.get_sheet_by_name('expenses')
@@ -782,12 +804,20 @@ def home_corp1(request, int_object1, int_object2):
             hig = values[:]
             del (hig[-1])
             max_exp = max(hig)
+            slog = ['A budget is more than just a series of numbers on a page; it is an embodiment of our values',
+                    'A budget takes the fun out of money.', 'Money is a terrible master but an excellent servant.',
+                    'A budget is telling your money where to go instead of wondering where it went.',
+                    'Every cent you own and every moment you spend is always an investment',
+                    'Budgeting has only one rule: Do not go over budget',
+                    'Do not tell me what you value, show me your budget, and I will tell you what you value',
+                    'A penny saved is worth two pennies earned . . . after taxes.']
 
+            slogan = slog[random.randrange(7)]
             labels = ['loans', 'salaries', 'maintenance', 'inventory', 'party fund', 'variable costs', 'bonuses',
                       'operation losses', 'travel expenses', 'charity', 'total']
             context = {'values': values, 'values1': values1, 'month': m2, 'labels': labels, 'total': val_total,
                        'total1': val_total1, 'rem_budget': rem_budget, 'max_exp': max_exp, 'dep': cur_dep[0],
-                       'month_number': m10, 'dep_number': department, 'all_lists':all_lists}
+                       'month_number': m10, 'dep_number': department, 'all_lists': all_lists, 'slogan':slogan}
 
             if request.method == 'POST':
                 if request.method == 'POST' and 'Submit' in request.POST:
@@ -1021,12 +1051,20 @@ def home1(request, int_object):
             hig = values[:]
             del (hig[-1])
             max_exp = max(hig)
+            slog = ['A budget is more than just a series of numbers on a page; it is an embodiment of our values',
+                    'A budget takes the fun out of money.', 'Money is a terrible master but an excellent servant.',
+                    'A budget is telling your money where to go instead of wondering where it went.',
+                    'Every cent you own and every moment you spend is always an investment',
+                    'Budgeting has only one rule: Do not go over budget',
+                    'Do not tell me what you value, show me your budget, and I will tell you what you value',
+                    'A penny saved is worth two pennies earned . . . after taxes.']
 
+            slogan = slog[random.randrange(7)]
             labels = ['loans', 'utility bills', 'insurance', 'entertainment', 'groceries', 'transportation',
                       'retirement fund',
                       'emergency fund', 'childcare', 'clothing', 'maintenance']
             context = {'values': values, 'values1': values1, 'month': m2, 'labels': labels, 'total': val_total,
-                       'total1': val_total1, 'rem_budget': rem_budget, 'max_exp': max_exp}
+                       'total1': val_total1, 'rem_budget': rem_budget, 'max_exp': max_exp, 'slogan':slogan}
 
             if request.method == 'POST':
                 # if request.POST.get('Submit') == 'Submit_Button':
@@ -1831,16 +1869,17 @@ def corp_pdf_view(request):
     if Org_User.objects.filter(username=u).exists():
         u = request.user.username
         u = str(u)
-        file = Org_User.objects.get(username=u).e_file_1
-        print(file)
-        file = str(file)
-        fn = settings.MEDIA_ROOT + '\\' + file
+        file1 = Org_User.objects.get(username=u).e_file_1
+        print(file1)
+        file1 = str(file1)
+        fn = settings.MEDIA_ROOT + '\\' + file1
     user = Org_User.objects.get(username=u)
     f_name = user.c_name
     # l_name = user.l_name
     email = user.email
     name = f_name
-    saving = settings.MEDIA_ROOT + r'\uploads\Report_for_' + u + '_General_Department.pdf'
+    dep = depa
+    saving = settings.MEDIA_ROOT + r'\uploads\Report_for_' + u + '_' + depa + '_Department.pdf'
     c = canvas.Canvas(saving, pagesize=A4)
     if m10 == 1:
         m2 = 'January'
@@ -1870,13 +1909,13 @@ def corp_pdf_view(request):
     print(m2)
     c.setFont('Times-Roman', 30)
     c.setFillColor(colors.deepskyblue)
-    c.drawString(40, 780, 'Budget Tracker')
+    c.drawString(40, 780, 'Trak-A-Budget')
     c.setFillColor(colors.black)
     c.setFont('Times-Roman', 13)
     c.drawString(55, 760, 'Finance Handling, Made Easy')
     c.setFillColor(colors.black)
     c.setFont('Times-Roman', 8)
-    c.drawString(400, 730, 'For queries, contact us at :budgettracker@gmail.com')
+    c.drawString(400, 730, 'For queries, contact us at :trakabudget@gmail.com')
     c.setFillColor(colors.darkblue)
     c.setFont('Times-Roman', 20)
     c.drawString(250, 700, 'Monthly Report')
@@ -1888,7 +1927,7 @@ def corp_pdf_view(request):
     c.drawString(40, 650, "Here's your monthly report for the month of " + m2 + '.')
     c.setFillColor(colors.cornflowerblue)
     c.setFont('Times-Roman', 15)
-    c.drawString(40, 615, 'Account Information')
+    c.drawString(40, 615, 'Account Information for '+ dep + ' Department')
     c.setFillColor(colors.black)
     c.setFont('Times-Roman', 9)
     c.drawString(40, 590, 'Name: ' + name)
@@ -2142,3 +2181,52 @@ def corp_pdf_view(request):
             os.remove(saving)
 
     return render(request, 'accounts/corp_pdf.html')
+
+
+def ind_profile_view(request):
+    slog = ['A budget is more than just a series of numbers on a page; it is an embodiment of our values',
+            'A budget takes the fun out of money.', 'Money is a terrible master but an excellent servant.',
+            'A budget is telling your money where to go instead of wondering where it went.',
+            'Every cent you own and every moment you spend is always an investment',
+            'Budgeting has only one rule: Do not go over budget',
+            'Do not tell me what you value, show me your budget, and I will tell you what you value',
+            'A penny saved is worth two pennies earned . . . after taxes.']
+
+    slogan = slog[random.randrange(7)]
+
+    u = request.user.username
+    u = str(u)
+
+    e = Ind_User.objects.get(username=u).email
+    e = str(e)
+
+    f = Ind_User.objects.get(username=u).f_name
+    l = Ind_User.objects.get(username=u).l_name
+    f = str(f)
+    l = str(l)
+
+    name = f +' ' + l
+
+    return render(request, 'accounts/profile_ind.html', context = {'slogan':slogan, 'name':name, 'email':e, 'username':u})
+
+
+def corp_profile_view(request):
+    u = request.user.username
+    u = str(u)
+
+    e = Org_User.objects.get(username=u).email
+    e = str(e)
+
+    c = Org_User.objects.get(username=u).c_name
+    c = str(c)
+
+    name = c
+    return render(request, 'accounts/profile_corp.html', context = {'name':name, 'email':e, 'username':u})
+
+
+def about_view(request):
+    return render(request, 'accounts/about.html')
+
+
+def about_corp_view(request):
+    return render(request, 'accounts/about_corp.html')
