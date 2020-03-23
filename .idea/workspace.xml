@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9fc79f0-57ca-4cb8-9419-f5d47ea50601" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runtime.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/budget_tracker_1/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/budget_tracker_1/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/budget_tracker_1/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/budget_tracker_1/wsgi.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,7 +211,7 @@
       <workItem from="1584681530597" duration="18289000" />
       <workItem from="1584764552512" duration="10310000" />
       <workItem from="1584790382261" duration="11978000" />
-      <workItem from="1584966449392" duration="2893000" />
+      <workItem from="1584966449392" duration="3090000" />
     </task>
     <task id="LOCAL-00001" summary="Commit with the pdf part">
       <created>1581521181329</created>
@@ -308,7 +304,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584854654542</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Final Commit with design.+2">
+      <created>1584971805170</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1584971805170</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -347,14 +350,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="160" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1578994556983" />
-    <state x="393" y="8" key="CommitChangelistDialog2" timestamp="1584971765669">
+    <state x="393" y="8" key="CommitChangelistDialog2" timestamp="1584971804039">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1584971765669" />
-    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1584854703543">
+    <state x="393" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1584971804039" />
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1584971814091">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1584854703543" />
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1584971814091" />
     <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1584969706172">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -415,10 +418,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1584863165113" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1584854659371">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1584971815741">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1584854659371" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1584971815741" />
     <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1584966497575">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
