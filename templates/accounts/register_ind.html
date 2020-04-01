@@ -171,18 +171,24 @@
 			<form method="post" id="LoginForm">
                 {% csrf_token %}
 				<h1 id="SignUpText">INDIVIDUAL SIGN UP</h1>
-				<input type="text" name="f_name" placeholder="First Name" class="name">
-				<input type="text" name="l_name" placeholder="Last Name" class="name">
-				<input type="text" name="username" placeholder="Username" id="uname">
-				<input type="text" name="email" placeholder="Email ID" id="email">
-				<input type="password" name="password1" placeholder="Password" class="pass">
-				<input type="password" name="password2" placeholder="Confirm Password" class="pass">
+				<input type="text" name="f_name" placeholder="First Name" class="name" required="required">
+				<input type="text" name="l_name" placeholder="Last Name" class="name" required="required">
+				<input type="text" name="username" placeholder="Username" id="uname" required="required">
+				<input type="text" name="email" placeholder="Email ID" id="email" required="required">
+				<input type="password" name="password1" placeholder="Password" class="pass" required="required">
+				<input type="password" name="password2" placeholder="Confirm Password" class="pass" required="required">
 				<button id="RegisterButton">
 					Register Now
 				</button>
 				<h1 id="linktext">Already Signed Up?</h1>
 				<a href="../../accounts/login_ind" target="_blank" title="Login Here">Login Here</a>
 			</form>
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+                {% endfor %}
+
+            {% endif %}
 			<br>
 			<br>
 			<br>

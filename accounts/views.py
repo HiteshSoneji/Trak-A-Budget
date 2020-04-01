@@ -46,8 +46,10 @@ def ind_register_view(request):
         if password1 == password2:
             if User.objects.filter(username=username).exists():
                 print("Username Exists")
+                messages.info(request, 'Username already exists, please try using another one')
             elif User.objects.filter(email=email).exists():
                 print("email Taken")
+                messages.info(request, 'Email ID already taken, please try signing in.')
             else:
                 user = User.objects.create_user(username=username, password=password1, email=email, first_name=f_name,
                                                 last_name=l_name)
@@ -1464,8 +1466,10 @@ def org_register_view(request):
         if password1 == password2:
             if User.objects.filter(username=username).exists():
                 print("Username Exists")
+                messages.info(request, 'Username already taken, please try using another one.')
             elif User.objects.filter(email=email).exists():
                 print("email Taken")
+                messages.info(request, 'Email ID already exists, please try signing in.')
             else:
                 user = User.objects.create_user(username=username, password=password1, email=email, first_name=c_name)
                 user.save();

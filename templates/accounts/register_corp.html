@@ -187,11 +187,11 @@
         <form method="post" id="LoginForm">
             {% csrf_token %}
             <h1 id="SignUpText">CORPORATE SIGN UP</h1>
-            <input type="text" name="c_name" placeholder="Company Name" class="name">
-            <input type="text" name="username" placeholder="Username" id="uname">
-            <input type="text" name="email" placeholder="Email ID" id="email">
-            <input type="password" name="password1" placeholder="Password" class="pass">
-            <input type="password" name="password2" placeholder="Confirm Password" class="pass">
+            <input type="text" name="c_name" placeholder="Company Name" class="name" required="required">
+            <input type="text" name="username" placeholder="Username" id="uname" required="required">
+            <input type="text" name="email" placeholder="Email ID" id="email" required="required">
+            <input type="password" name="password1" placeholder="Password" class="pass" required="required">
+            <input type="password" name="password2" placeholder="Confirm Password" class="pass" required="required">
                 <label for="departments">Which Departments do you want to add?</label><br>
                 <select class="selectpicker" name="departments" id='departments' multiple ='multiple'>
                     <option value="Marketing">Marketing</option>
@@ -209,6 +209,12 @@
             <h1 id="linktext">Already Signed Up?</h1>
             <a href="../../accounts/login_corp" target="_blank" title="Login Here">Login Here</a>
         </form>
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+            {% endfor %}
+
+        {% endif %}
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
         <script>
